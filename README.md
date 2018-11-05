@@ -1,10 +1,15 @@
 
 Twitter toolkit onRails can Follow, Unfollow, Retweet and Posts.
+
 Would you like to take a look at the video?
+
 Thank you, thank you very much. I already hear your admiring exclamations.
+
 But!
+
 Guys, don't forget please. This is a concept only. I am working on improving and refactoring this rails-app.
 [Description](https://masterpro.ws/ruby-on-rails-twitter-tools) (in Russian).
+
 
 [![Twitter toolkit onRails](https://img.youtube.com/vi/0nKzoxSbt1c/0.jpg)](https://www.youtube.com/watch?v=0nKzoxSbt1c "Twitter toolkit onRails")
 
