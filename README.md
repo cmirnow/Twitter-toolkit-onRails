@@ -20,9 +20,9 @@ bundle
 bin/rails db:migrate RAILS_ENV=development
 rails s
 ```
-Go to http://localhost:3000
-Sign up
-Sign in
-Create New Tweet now. Attention, you need to get four keys of Twitter API: Consumer Key, Consumer Secret, Access Token and Access Token Secret.
-Select one of four actions (follow, unfollow, retweet, post).
-Go ahead. :)
+* Go to http://localhost:3000
+* Sign up
+* Sign in
+* Create New Tweet now. Attention, you need to get four keys of Twitter API: Consumer Key, Consumer Secret, Access Token * and Access Token Secret.
+* Select one of four actions (follow, unfollow, retweet, post).
+* Go ahead. :)
