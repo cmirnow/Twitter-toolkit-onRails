@@ -59,10 +59,10 @@ class Twi
 	
     def self.follow(client, follow)
 		begin
-			follow.take(100).reverse_each do |line|
-				client.follow(line)
-				follow.delete(line)
-				puts "follow: #{line} #{Time.now}"
+			follow.take(100).reverse_each do |user, _index|
+				client.follow(user.id)
+				follow.delete(user.id)
+				puts "follow: #{user.id} #{Time.now}"
 				sleep rand(1..5)
 			end
 		rescue Twitter::Error::TooManyRequests, Twitter::Error::Forbidden, OpenSSL::SSL::SSLError, Twitter::Error::ServiceUnavailable, HTTP::ConnectionError
@@ -75,10 +75,10 @@ class Twi
     
 	def self.unfollow(client, unfollow)
 		begin
-			unfollow.take(1000).reverse_each do |line|
-				client.unfollow(line)
-				unfollow.delete(line)
-				puts "unfollow: #{line} #{Time.now}"
+			unfollow.take(1000).reverse_each do |user, _index|
+				client.unfollow(user.id)
+				unfollow.delete(user.id)
+				puts "unfollow: #{user.id} #{Time.now}"
 				sleep rand(1..5)
 			end
 		rescue Twitter::Error::TooManyRequests, Twitter::Error::Forbidden, OpenSSL::SSL::SSLError, Twitter::Error::ServiceUnavailable, HTTP::ConnectionError
