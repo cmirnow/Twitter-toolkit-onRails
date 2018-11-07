@@ -1,5 +1,63 @@
 class Twi
-		def self.follow(client, follow)
+    def self.get_followers(client, user_id)
+		follower_ids = []
+		next_cursor = -1
+		while next_cursor != 0
+			cursor = client.follower_ids(user_id, :cursor => next_cursor)
+			follower_ids.concat cursor.attrs[:ids]
+			next_cursor = cursor.send(:next_cursor)
+		end
+
+		followers = []
+		follower_ids.each_slice(100) do |ids|
+			followers.concat client.users(ids)
+		end
+		begin
+			followers_total = []
+			followers.each_with_index do |user, _index|
+				followers_total << user.id
+				puts "adding follower to an array: #{user.id}"
+			end
+		rescue Twitter::Error::TooManyRequests
+			[]
+			puts "rescue Twitter::Error #{Time.now}"
+			sleep 905
+			retry
+		end
+	end
+    
+    def self.get_friends(client, user_id)
+		friend_ids = []
+		next_cursor = -1
+		begin
+			while next_cursor != 0
+				cursor = client.friend_ids(user_id, :cursor => next_cursor)
+				friend_ids.concat cursor.attrs[:ids]
+				next_cursor = cursor.send(:next_cursor)
+			end
+		rescue Twitter::Error::Unauthorized
+			[]
+		end
+		friends = []
+		friend_ids.each_slice(100) do |ids|
+			friends.concat client.users(ids)
+		end
+		begin
+			friends_total = []
+			#friends = get_friends(client)
+			friends.each_with_index do |user, _index|
+				friends_total << user.id
+				puts "adding friend to an array: #{user.id}"
+			end
+		rescue Twitter::Error::TooManyRequests
+			[]
+			puts "rescue Twitter::Error #{Time.now}"
+			sleep 905
+			retry
+		end
+	end
+	
+    def self.follow(client, follow)
 		begin
 			follow.take(100).reverse_each do |line|
 				client.follow(line)
@@ -14,7 +72,8 @@ class Twi
 			retry
 		end
 	end
-			def self.unfollow(client, unfollow)
+    
+	def self.unfollow(client, unfollow)
 		begin
 			unfollow.take(1000).reverse_each do |line|
 				client.unfollow(line)
