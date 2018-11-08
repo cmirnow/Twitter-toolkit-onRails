@@ -24,25 +24,20 @@ module Main
 			friends_total = Twi.get_friends(client, config)
 		end
         
-		if params[:select_action] == 'follow'
+        case
+		when params[:select_action] == 'follow'
 			follow = followers_total - friends_total
 			Twi.follow(client, follow)
-		end
-
-		if params[:select_action] == 'unfollow'
+		when params[:select_action] == 'unfollow'
 			unfollow = friends_total - followers_total
 			Twi.unfollow(client, unfollow)
-		end
-		if params[:select_action] == 'retweet'
+		when params[:select_action] == 'retweet'
 			topics = params['tag'].split(/,/)
 			Twi.retweet(config, topics)
-		end
-
-		if params[:select_action] == 'post'
+		when params[:select_action] == 'post'
 			array_posts = params[:tag].split(/[\r\n]+/)
 			Twi.post(config, array_posts)
-		end
+        end
 
 	end
 end
-
