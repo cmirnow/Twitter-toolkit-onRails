@@ -90,10 +90,9 @@ class Twi
 	end
 
 	def self.retweet(config, topics)    
-		i = 0
+		counter = 0
 		num = 15
-		i1 = 0
-		while i + i1 <= num
+		while counter <= num
 			begin
 				rClient = Twitter::REST::Client.new config
 				sClient = Twitter::Streaming::Client.new(config)
@@ -101,16 +100,14 @@ class Twi
 					if tweet.is_a?(Twitter::Tweet)
 						puts tweet.text
 						rClient.retweet tweet
-						i += 1
+						counter += 1
 						sleep rand(1..15)
-						break if i1 == 15
 					end
 				end
 			rescue StandardError
 				puts 'error occurred, waiting for 5 seconds'
-				i1 += 1
+				counter += 1
 				sleep 5
-				break if i1 == 15
 			end
 		end
 	end
