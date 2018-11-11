@@ -16,7 +16,7 @@ class Twi
 			followers_total = []
 			followers.each_with_index do |user, _index|
 				followers_total << user.id
-				puts "adding follower to an array: #{user.id}"
+				puts "adding follower to an array: #{user.screen_name}"
 			end
 		rescue Twitter::Error::TooManyRequests
 			[]
@@ -47,7 +47,7 @@ class Twi
 			#friends = get_friends(client)
 			friends.each_with_index do |user, _index|
 				friends_total << user.id
-				puts "adding friend to an array: #{user.id}"
+				puts "adding friend to an array: #{user.screen_name}"
 			end
 		rescue Twitter::Error::TooManyRequests
 			[]
@@ -58,16 +58,19 @@ class Twi
 	end
 	
     def self.follow(client, follow)
+        counter = 0
 		begin
-			follow.take(100).reverse_each do |user, _index|
-				client.follow(user.id)
-				follow.delete(user.id)
-				puts "follow: #{user.id} #{Time.now}"
+			follow.take(100).reverse_each do |user| if counter <= 2
+				client.follow(user)
+				follow.delete(user)
+				puts "follow: #{user.screen_name} #{Time.now}"
 				sleep rand(1..5)
 			end
+    end
 		rescue Twitter::Error::TooManyRequests, Twitter::Error::Forbidden, OpenSSL::SSL::SSLError, Twitter::Error::ServiceUnavailable, HTTP::ConnectionError
 			[]
 			puts "rescue Twitter::Error #{Time.now}"
+            counter += 1
 			sleep 905
 			retry
 		end
@@ -75,10 +78,10 @@ class Twi
     
 	def self.unfollow(client, unfollow)
 		begin
-			unfollow.take(1000).reverse_each do |user, _index|
-				client.unfollow(user.id)
-				unfollow.delete(user.id)
-				puts "unfollow: #{user.id} #{Time.now}"
+			unfollow.take(1000).reverse_each do |user|
+				client.unfollow(user)
+				unfollow.delete(user)
+				puts "unfollow: #{user.screen_name} #{Time.now}"
 				sleep rand(1..5)
 			end
 		rescue Twitter::Error::TooManyRequests, Twitter::Error::Forbidden, OpenSSL::SSL::SSLError, Twitter::Error::ServiceUnavailable, HTTP::ConnectionError
@@ -91,8 +94,7 @@ class Twi
 
 	def self.retweet(config, topics)    
 		counter = 0
-		num = 15
-		while counter <= num
+		while counter <= 15
 			begin
 				rClient = Twitter::REST::Client.new config
 				sClient = Twitter::Streaming::Client.new(config)
