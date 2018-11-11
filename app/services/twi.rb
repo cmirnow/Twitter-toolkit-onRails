@@ -44,7 +44,6 @@ class Twi
 		end
 		begin
 			friends_total = []
-			#friends = get_friends(client)
 			friends.each_with_index do |user, _index|
 				friends_total << user.id
 				puts "adding friend to an array: #{user.screen_name}"
