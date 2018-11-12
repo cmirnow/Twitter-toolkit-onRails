@@ -22,7 +22,7 @@ sudo -u postgres psql
 postgres=# CREATE DATABASE development_test2;
 git clone https://github.com/cmirnow/Twitter-toolkit-onRails.git
 cd Twitter-toolkit-onRails
-bundle
+bundle install
 bin/rails db:migrate RAILS_ENV=development
 rails s
 ```
