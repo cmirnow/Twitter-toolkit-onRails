@@ -21,3 +21,21 @@
 /yarn-error.log
 
 .byebug_history
+.idea/
+
+Gemfile.lock
+vendor/bundle/ruby/2.5.0/gems/addressable-2.5.2/.rakeTasks
+vendor/bundle/ruby/2.5.0/gems/ast-2.4.0/.rakeTasks
+vendor/bundle/ruby/2.5.0/gems/autoprefixer-rails-8.0.0/.rakeTasks
+vendor/bundle/ruby/2.5.0/gems/autoprefixer-rails-8.6.2/.rakeTasks
+vendor/bundle/ruby/2.5.0/gems/autoprefixer-rails-9.3.1/.rakeTasks
+vendor/bundle/ruby/2.5.0/gems/bcrypt-3.1.11/.rakeTasks
+vendor/bundle/ruby/2.5.0/gems/bcrypt-3.1.12/.rakeTasks
+vendor/bundle/ruby/2.5.0/gems/bindex-0.5.0/.rakeTasks
+vendor/bundle/ruby/2.5.0/gems/bootstrap-sass-3.3.7/.rakeTasks
+vendor/bundle/ruby/2.5.0/gems/buftok-0.2.0/.rakeTasks
+vendor/bundle/ruby/2.5.0/gems/buftok-0.2.0/Gemfile.lock
+vendor/bundle/ruby/2.5.0/gems/childprocess-0.8.0/.rakeTasks
+vendor/bundle/ruby/2.5.0/gems/childprocess-0.9.0/.rakeTasks
+vendor/bundle/ruby/2.5.0/gems/crass-1.0.4/.rakeTasks
+vendor/bundle/ruby/2.5.0/gems/devise-4.3.0/.rakeTasks

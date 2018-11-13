@@ -8,10 +8,10 @@ module Main
 		}
 
 		config = {
-				consumer_key: tweet.key,
-				consumer_secret: tweet.secret,
-				access_token: tweet.token,
-				access_token_secret: tweet.token_secret
+				consumer_key: tweet&.key,
+				consumer_secret: tweet&.secret,
+				access_token: tweet&.token,
+				access_token_secret: tweet&.token_secret
 		}
 
 		if (params[:select_action] == 'follow') || (params[:select_action] == 'unfollow')
