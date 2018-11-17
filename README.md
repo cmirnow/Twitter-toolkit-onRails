@@ -1,5 +1,5 @@
 ## Short description
-Twitter Toolkit onRails can Follow, Unfollow, Retweet and Posts.
+Twitter Toolkit onRails can Follow, Unfollow, Retweet, Posts and Tweet Parser.
 
 Would you like to take a look at the video?
 
