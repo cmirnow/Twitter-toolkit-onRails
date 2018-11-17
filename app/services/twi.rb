@@ -1,6 +1,5 @@
 class Twi
-    
-	def self.get_followers(client, user_id)
+    def self.get_followers(client, user_id)
 		follower_ids = []
 		next_cursor = -1
 		while next_cursor != 0
@@ -26,7 +25,6 @@ class Twi
 			retry
 		end
 	end
-    
     def self.get_friends(client, user_id)
 		friend_ids = []
 		next_cursor = -1
@@ -56,7 +54,6 @@ class Twi
 			retry
 		end
 	end
-    
     def self.follow(client, follow)
 		counter = 0
 		begin
@@ -75,7 +72,6 @@ class Twi
 		retry
 	end
     end
-    
     def self.unfollow(client, unfollow)
 	begin
 		unfollow.take(1000).reverse_each do |user|
@@ -91,7 +87,6 @@ class Twi
 		retry
 	end
     end
-    
     def self.retweet(client, sclient, topics)    
 	counter = 0
 	while counter <= 15
@@ -111,14 +106,12 @@ class Twi
 		end
 	end
     end
-    
     def self.post(client, array_posts)
 	array_posts.each do |i|
 		puts client.update(i)
 		sleep rand(1..10)
 	end
     end
-    
     def self.parser(client, twi_acc)
 	arr = Set.new
 	CSV.open("twitts.csv", "w") do |csv|
@@ -131,7 +124,7 @@ class Twi
 		end
 		arr.each do |item|
 			csv << [item]
-            puts item
+			puts item
 		end
 	end
     end
