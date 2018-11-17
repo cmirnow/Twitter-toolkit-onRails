@@ -13,12 +13,14 @@ module Main
 			access_token: tweet&.token,
 			access_token_secret: tweet&.token_secret
 		}
-
+        client = Twitter::REST::Client.new config
+        
 		if (params[:select_action] == 'follow') || (params[:select_action] == 'unfollow')
-			client = Twitter::REST::Client.new config
 			followers_total = Twi.get_followers(client, config)
 			friends_total = Twi.get_friends(client, config)
-		end
+        elsif params[:select_action] == 'retweeting'
+            sclient = Twitter::Streaming::Client.new(config)
+        end
 
 		case
 		when params[:select_action] == 'follow'
@@ -27,13 +29,16 @@ module Main
 		when params[:select_action] == 'unfollow'
 			unfollow = friends_total - followers_total
 			Twi.unfollow(client, unfollow)
-		when params[:select_action] == 'retweet'
+		when params[:select_action] == 'retweeting'
 			topics = params['tag'].split(/,/)
-			Twi.retweet(config, topics)
-		when params[:select_action] == 'post'
+			Twi.retweet(client, sclient, topics)
+		when params[:select_action] == 'posting'
 			array_posts = params[:tag].split(/[\r\n]+/)
-			Twi.post(config, array_posts)
-		end
+			Twi.post(client, array_posts)
+        when params[:select_action] == 'parsering'
+            twi_acc = params['tag']
+            Twi.parser(client, twi_acc)
+        end
 
 	end
 end

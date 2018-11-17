@@ -37,6 +37,7 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'rubocop', '~> 0.52.1', require: false
 gem 'twitter'
+gem 'csv'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

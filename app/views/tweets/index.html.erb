@@ -45,11 +45,12 @@
   </div>
   <div class="form-group">
     <label for="Action">Action</label>
-    <select class="form-control" id="select_action" name="select_action" onchange="this.value.includes('t')?document.getElementById('Tag').style.display='':document.getElementById('Tag').style.display='none'">
+    <select class="form-control" id="select_action" name="select_action" onchange="this.value.includes('i')?document.getElementById('Tag').style.display='':document.getElementById('Tag').style.display='none'">
         <option>follow</option>
         <option>unfollow</option>
-        <option>retweet</option>
-        <option>post</option>
+        <option>retweeting</option>
+        <option>posting</option>
+        <option>parsering</option>
 </select>
   </div>
   <div class="form-group">
@@ -67,13 +68,9 @@
           type: 'GET',
           url: '/tweets',
           data: msg,
-          /*beforeSend: function(){
-       $('.progress').show()
-   },*/
           success: function(data) {
           $('#btnSubmit').prop('disabled', false),
-            alert('ГОтово')/*,
-            $('.progress').hide()*/;
+            alert('Done');
           },
           error:  function(xhr, str){
           $('#btnSubmit').prop('disabled', false),

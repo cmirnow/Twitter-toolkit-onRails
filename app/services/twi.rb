@@ -1,5 +1,6 @@
 class Twi
-    def self.get_followers(client, user_id)
+    
+	def self.get_followers(client, user_id)
 		follower_ids = []
 		next_cursor = -1
 		while next_cursor != 0
@@ -55,9 +56,9 @@ class Twi
 			retry
 		end
 	end
-	
+    
     def self.follow(client, follow)
-        counter = 0
+		counter = 0
 		begin
 			follow.take(100).reverse_each do |user| if counter <= 2
 				client.follow(user)
@@ -65,61 +66,74 @@ class Twi
 				puts "follow: #{user.screen_name} #{Time.now}"
 				sleep rand(1..5)
 			end
+		end
+	rescue Twitter::Error::TooManyRequests, Twitter::Error::Forbidden, OpenSSL::SSL::SSLError, Twitter::Error::ServiceUnavailable, HTTP::ConnectionError
+		[]
+		puts "rescue Twitter::Error #{Time.now}"
+		counter += 1
+		sleep 905
+		retry
+	end
     end
-		rescue Twitter::Error::TooManyRequests, Twitter::Error::Forbidden, OpenSSL::SSL::SSLError, Twitter::Error::ServiceUnavailable, HTTP::ConnectionError
-			[]
-			puts "rescue Twitter::Error #{Time.now}"
-            counter += 1
-			sleep 905
-			retry
-		end
-	end
     
-	def self.unfollow(client, unfollow)
+    def self.unfollow(client, unfollow)
+	begin
+		unfollow.take(1000).reverse_each do |user|
+			client.unfollow(user)
+			unfollow.delete(user)
+			puts "unfollow: #{user.screen_name} #{Time.now}"
+			sleep rand(1..5)
+		end
+	rescue Twitter::Error::TooManyRequests, Twitter::Error::Forbidden, OpenSSL::SSL::SSLError, Twitter::Error::ServiceUnavailable, HTTP::ConnectionError
+		[]
+		puts "rescue Twitter::Error #{Time.now}"
+		sleep 905
+		retry
+	end
+    end
+    
+    def self.retweet(client, sclient, topics)    
+	counter = 0
+	while counter <= 15
 		begin
-			unfollow.take(1000).reverse_each do |user|
-				client.unfollow(user)
-				unfollow.delete(user)
-				puts "unfollow: #{user.screen_name} #{Time.now}"
-				sleep rand(1..5)
-			end
-		rescue Twitter::Error::TooManyRequests, Twitter::Error::Forbidden, OpenSSL::SSL::SSLError, Twitter::Error::ServiceUnavailable, HTTP::ConnectionError
-			[]
-			puts "rescue Twitter::Error #{Time.now}"
-			sleep 905
-			retry
-		end
-	end
-
-	def self.retweet(config, topics)    
-		counter = 0
-		while counter <= 15
-			begin
-				rClient = Twitter::REST::Client.new config
-				sClient = Twitter::Streaming::Client.new(config)
-				sClient.filter(track: topics.join(',')) do |tweet|
-					if tweet.is_a?(Twitter::Tweet)
-						puts tweet.text
-						rClient.retweet tweet
-						counter += 1
-						sleep rand(1..15)
-					end
+			sclient.filter(track: topics.join(',')) do |tweet|
+				if tweet.is_a?(Twitter::Tweet)
+					puts tweet.text
+					client.retweet tweet
+					counter += 1
+					sleep rand(1..15)
 				end
-			rescue StandardError
-				puts 'error occurred, waiting for 5 seconds'
-				counter += 1
-				sleep 5
 			end
+		rescue StandardError
+			puts 'error occurred, waiting for 5 seconds'
+			counter += 1
+			sleep 5
 		end
 	end
-
-	def self.post(config, array_posts)
-		client = Twitter::REST::Client.new config
-		array_posts.each do |i|
-			client.update(i)
-			sleep rand(1..10)
+    end
+    
+    def self.post(client, array_posts)
+	array_posts.each do |i|
+		puts client.update(i)
+		sleep rand(1..10)
+	end
+    end
+    
+    def self.parser(client, twi_acc)
+	arr = Set.new
+	CSV.open("twitts.csv", "w") do |csv|
+		client.search(twi_acc, result_type: "recent", tweet_mode: "extended").take(30).collect do |tweet|
+			arr << tweet
+                .attrs[:full_text]
+                .gsub(twi_acc, "")
+                .gsub("RT :", "")
+                .gsub("RT", "")
+		end
+		arr.each do |item|
+			csv << [item]
+            puts item
 		end
 	end
+    end
 
 end
-
