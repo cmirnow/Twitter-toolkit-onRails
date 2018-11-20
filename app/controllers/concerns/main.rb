@@ -16,8 +16,13 @@ module Main
         client = Twitter::REST::Client.new config
         
 		if (params[:select_action] == 'follow') || (params[:select_action] == 'unfollow')
-			followers_total = Twi.get_followers(client, config)
+			followers = Twi.get_followers(client, config)
+            followers_total = Twi.get_followers_total(followers)
 			friends_total = Twi.get_friends(client, config)
+        elsif
+            params[:select_action] == 'acc-parsering'
+            user_id = params['tag']
+			followers = Twi.get_followers(client, user_id)
         elsif params[:select_action] == 'retweeting'
             sclient = Twitter::Streaming::Client.new(config)
         end
@@ -38,6 +43,8 @@ module Main
         when params[:select_action] == 'parsering'
             twi_acc = params['tag']
             Twi.parser(client, twi_acc)
+        when params[:select_action] == 'acc-parsering'
+            Twi.print_followers(followers)
         end
 
 	end

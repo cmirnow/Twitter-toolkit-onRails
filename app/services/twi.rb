@@ -1,5 +1,6 @@
 class Twi
-    def self.get_followers(client, user_id)
+    
+	def self.get_followers(client, user_id)
 		follower_ids = []
 		next_cursor = -1
 		while next_cursor != 0
@@ -7,24 +8,21 @@ class Twi
 			follower_ids.concat cursor.attrs[:ids]
 			next_cursor = cursor.send(:next_cursor)
 		end
-
 		followers = []
 		follower_ids.each_slice(100) do |ids|
 			followers.concat client.users(ids)
 		end
-		begin
+        followers
+    end
+    
+    def self.get_followers_total followers
 			followers_total = []
 			followers.each_with_index do |user, _index|
 				followers_total << user.id
 				puts "adding follower to an array: #{user.screen_name}"
 			end
-		rescue Twitter::Error::TooManyRequests
-			[]
-			puts "rescue Twitter::Error #{Time.now}"
-			sleep 905
-			retry
-		end
 	end
+    
     def self.get_friends(client, user_id)
 		friend_ids = []
 		next_cursor = -1
@@ -41,19 +39,13 @@ class Twi
 		friend_ids.each_slice(100) do |ids|
 			friends.concat client.users(ids)
 		end
-		begin
 			friends_total = []
 			friends.each_with_index do |user, _index|
 				friends_total << user.id
 				puts "adding friend to an array: #{user.screen_name}"
 			end
-		rescue Twitter::Error::TooManyRequests
-			[]
-			puts "rescue Twitter::Error #{Time.now}"
-			sleep 905
-			retry
-		end
 	end
+    
     def self.follow(client, follow)
 		counter = 0
 		begin
@@ -72,6 +64,7 @@ class Twi
 		retry
 	end
     end
+    
     def self.unfollow(client, unfollow)
 	begin
 		unfollow.take(1000).reverse_each do |user|
@@ -87,6 +80,7 @@ class Twi
 		retry
 	end
     end
+    
     def self.retweet(client, sclient, topics)    
 	counter = 0
 	while counter <= 15
@@ -106,12 +100,14 @@ class Twi
 		end
 	end
     end
+    
     def self.post(client, array_posts)
 	array_posts.each do |i|
 		puts client.update(i)
 		sleep rand(1..10)
 	end
     end
+    
     def self.parser(client, twi_acc)
 	arr = Set.new
 	CSV.open("twitts.csv", "w") do |csv|
@@ -124,9 +120,19 @@ class Twi
 		end
 		arr.each do |item|
 			csv << [item]
-			puts item
+            puts item
 		end
 	end
+    end
+    
+    def self.print_followers followers
+		CSV.open("followers.csv", "w") do |csv|
+			total = followers.count
+			followers.each_with_index do |user, index|
+				print "\r#{index}/#{total} complete"
+				csv << [user.screen_name]
+			end
+		end
     end
 
 end
