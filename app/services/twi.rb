@@ -47,11 +47,13 @@ class Twi
 	end
     
     def self.follow(client, follow)
-		counter = 0
+		counter_r = 0
+        counter_f = 0
 		begin
-			follow.take(100).reverse_each do |user| if counter <= 2
+			follow.take(100).reverse_each do |user| if counter_r <= 2 #ending a long task if Twitter API doesn't allow work
 				client.follow(user)
 				follow.delete(user)
+                counter_f += 1
 				puts "follow: #{user.screen_name} #{Time.now}"
 				sleep rand(1..5)
 			end
@@ -59,9 +61,9 @@ class Twi
 	rescue Twitter::Error::TooManyRequests, Twitter::Error::Forbidden, OpenSSL::SSL::SSLError, Twitter::Error::ServiceUnavailable, HTTP::ConnectionError
 		[]
 		puts "rescue Twitter::Error #{Time.now}"
-		counter += 1
-		sleep 905
-		retry
+		counter_r += 1
+		sleep 905 if counter_f > 0 #ending a long task if Twitter API doesn't allow work
+		retry if counter_f > 0
 	end
     end
     
