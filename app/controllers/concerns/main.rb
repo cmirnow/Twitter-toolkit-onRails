@@ -31,20 +31,27 @@ module Main
 		when params[:select_action] == 'follow'
 			follow = followers_total - friends_total
 			Twi.follow(client, follow)
+            flash[:notice] = 'Success'
 		when params[:select_action] == 'unfollow'
 			unfollow = friends_total - followers_total
 			Twi.unfollow(client, unfollow)
+            flash[:notice] = 'Success'
 		when params[:select_action] == 'retweeting'
 			topics = params['tag'].split(/,/)
 			Twi.retweet(client, sclient, topics)
+            flash[:notice] = 'Success'
 		when params[:select_action] == 'posting'
 			array_posts = params[:tag].split(/[\r\n]+/)
 			Twi.post(client, array_posts)
+            flash[:notice] = 'Success'
         when params[:select_action] == 'parsering'
             twi_acc = params['tag']
-            Twi.parser(client, twi_acc)
+            twits_array = render :json => (Twi.parser(client, twi_acc)).join(', ')
+            flash[:notice] = twits_array
         when params[:select_action] == 'acc-parsering'
-            Twi.print_followers(followers)
+            twi_array = render :json => (Twi.print_followers(followers)).join(', ')
+            flash[:notice] = twi_array
+            
         end
 
 	end

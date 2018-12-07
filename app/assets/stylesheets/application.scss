@@ -16,6 +16,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$growlyflash-top:     20px !default;
+$growlyflash-side:    20px !default;
+$growlyflash-width:   60% !default;
+$growlyflash-zindex:  9999 !default;
+@import "growlyflash";
+
 body {
     margin: 40px;
 }

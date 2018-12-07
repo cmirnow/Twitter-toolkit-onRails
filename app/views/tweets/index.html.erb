@@ -1,5 +1,3 @@
-
-
 <% if user_signed_in? %>
     <span>Здравствуйте, <%= current_user.email %></span>
     <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
@@ -61,24 +59,4 @@
   <button id="btnSubmit" type="submit" class="btn btn-default">Go ahead</button>
 </form>
 
-  <script type="text/javascript" language="javascript">
- 	function call() {
- 	$('#btnSubmit').prop('disabled', true);
- 	  var msg   = $('#twitsform').serialize();
-        $.ajax({
-          type: 'GET',
-          url: '/tweets',
-          data: msg,
-          success: function(data) {
-          $('#btnSubmit').prop('disabled', false),
-            alert('Done');
-          },
-          error:  function(xhr, str){
-          $('#btnSubmit').prop('disabled', false),
-	    alert('Что-то пошло не так: ' + xhr.responseCode),
-	    $('.progress').hide();
-          }
-        });
- 
-    }
-</script>
+<script type="text/javascript" src="/js/ajax.js"></script>
