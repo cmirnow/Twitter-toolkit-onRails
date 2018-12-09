@@ -15,7 +15,7 @@ module Main
 		}
         client = Twitter::REST::Client.new config
         
-		if (params[:select_action] == 'follow') || (params[:select_action] == 'unfollow')
+		if params[:select_action] == 'follow' || params[:select_action] == 'unfollow' || params[:select_action] == 'follow-hands'
 			followers = Twi.get_followers(client, config)
             followers_total = Twi.get_followers_total(followers)
 			friends_total = Twi.get_friends(client, config)
@@ -46,12 +46,22 @@ module Main
             flash[:notice] = 'Success'
         when params[:select_action] == 'parsering'
             twi_acc = params['tag']
-            twits_array = render :json => (Twi.parser(client, twi_acc)).join(', ')
+            twits_array = Twi.parser(client, twi_acc).join('<br>')
             flash[:notice] = twits_array
         when params[:select_action] == 'acc-parsering'
-            twi_array = render :json => (Twi.print_followers(followers)).join(', ')
+            twi_array = Twi.print_followers(followers).join(' ')
             flash[:notice] = twi_array
-            
+        when params[:select_action] == 'follow-hands'
+            array = []
+            follow = followers_total - friends_total
+            follow.take(20).each do |user|
+                array << '<a href = https://twitter.com/' + user.screen_name + ' target="_blank">' + user.screen_name + '</a>'
+            end
+            unless array.empty?
+			flash[:notice] = array.join('<br>')
+            else
+            flash[:notice] = 'Nothing to do'
+            end
         end
 
 	end
