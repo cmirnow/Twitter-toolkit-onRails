@@ -16,21 +16,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-$growlyflash-top:     20px !default;
+$growlyflash-top:     6em !default;
 $growlyflash-side:    20px !default;
-$growlyflash-width:   60% !default;
+$growlyflash-width:   65% !default;
 $growlyflash-zindex:  9999 !default;
 @import "growlyflash";
 
 body {
     margin: 40px;
 }
-td, th {
-    padding: 5px;
-}
-.new_tweet {
-    padding-bottom: 20px;
-}
-.form-control {
-    width: 30%;
-}
+
+
