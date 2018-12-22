@@ -7,7 +7,8 @@
          <% else %>
          <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
          <% end %>
-         <h1>Tweets</h1>
+         <%= image_tag("/logo.png") %>
+         <h3>Twitter Toolkit onRails</h3>
          <table>
             <thead>
                <tr>
@@ -28,7 +29,7 @@
          </table>
          <br>
          <div class="new_tweet">
-            <%= link_to 'New Tweet', new_tweet_path %>
+            <%= link_to 'New Access Tokens Block', new_tweet_path %>
          </div>
          <form method="get" id="twitsform" action="javascript:void(null);" onsubmit="call()">
             <label for="Twitter account">Twitter account</label>
@@ -58,7 +59,7 @@
    <!-- Page Content -->
    <div id="page-content-wrapper">
       <div class="container-fluid">
-         <button href="#menu-toggle" class="btn btn-default" id="menu-toggle" style="margin-top:-3em;">Toggle Menu</a></button>
+         <button href="#menu-toggle" class="btn btn-default" id="menu-toggle" style="margin-top:-3em;">Toggle Panel</a></button>
       </div>
    </div>
    <!-- /#page-content-wrapper -->
