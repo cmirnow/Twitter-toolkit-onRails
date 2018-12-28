@@ -99,7 +99,7 @@ class Twi
 		def self.post(client, array_posts)
 		array_posts.each do |i|
 			puts client.update(i)
-			sleep rand(1..10)
+			sleep rand(10..45)
 		end
 	end
 		def self.parser(client, twi_acc)

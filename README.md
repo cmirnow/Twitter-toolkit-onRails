@@ -12,7 +12,7 @@ Guys, don't forget please. This is a concept only. I am working on improving and
 [Description](https://masterpro.ws/ruby-on-rails-twitter-tools) (in Russian).
 
 
-[![Twitter toolkit onRails](https://img.youtube.com/vi/0nKzoxSbt1c/0.jpg)](https://www.youtube.com/watch?v=0nKzoxSbt1c "Twitter toolkit onRails")
+[![Twitter toolkit onRails](https://img.youtube.com/vi/9pWFf7fc1DE/0.jpg)](https://www.youtube.com/watch?v=9pWFf7fc1DE "Twitter toolkit onRails")
 
 ## Running Locally
 * Make sure you have Ruby and Postgresql installed.
