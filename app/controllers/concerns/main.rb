@@ -41,7 +41,7 @@ module Main
 			Twi.retweet(client, sclient, topics)
             flash[:notice] = 'Success'
 		when params[:select_action] == 'posting'
-			array_posts = params[:tag].split(/[\r\n]+/)
+			array_posts = params[:tag1].split(/[\r\n]+/)
 			Twi.post(client, array_posts)
             flash[:notice] = 'Success'
         when params[:select_action] == 'parsering'

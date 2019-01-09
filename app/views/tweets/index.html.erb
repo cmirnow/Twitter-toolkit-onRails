@@ -39,19 +39,19 @@
                <% end %>
             </select>
       </div>
-      <div class="form-group">
+      <div class="form-group"> 
       <label for="Action">Action</label>
-      <select class="form-control" id="select_action" name="select_action" onchange="this.value.includes('i')?document.getElementById('Tag').style.display='':document.getElementById('Tag').style.display='none'">
-      <option>follow</option>
-      <option>unfollow</option>
-      <option>retweeting</option>
-      <option>posting</option>
-      <option>parsering</option>
-      <option>acc-parsering</option>
-      <option>follow-hands</option>
+      <select class="form-control" id="select_action" name="select_action">
+      <option value="follow">Follow</option>
+      <option value="unfollow">Unfollow</option>
+      <option value="retweeting">Retweet</option>
+      <option value="posting">Posting</option>
+      <option value="parsering">Tweet Parser</option>
+      <option value="acc-parsering">Account Parser</option>
+      <option value="follow-hands">Manual Following</option>
       </select>
-      <!-- <label for="Tags">Tags</label> -->
-      <textarea class="form-control" id="Tag" name="tag" rows="3" style="display: none; margin-top:1em;"></textarea>
+      <input type="text" class="form-control" id="Input" name="tag" style="display: none; margin-top:1em;">
+      <textarea type="text" class="form-control" id="Textarea" name="tag1" rows="6" style="display: none; margin-top:1em;"></textarea>
       <button id="btnSubmit" type="submit" class="btn btn-default" style="margin-top:1em;">Go ahead</button>
       </form>
       </div>
@@ -65,6 +65,7 @@
    <!-- /#page-content-wrapper -->
 </div>
 <script type="text/javascript" src="/js/ajax.js"></script>
+<script type="text/javascript" src="/js/input.js"></script>
 <!-- Menu Toggle Script -->
 <script>
    $("#menu-toggle").click(function(e) {
