@@ -35,7 +35,7 @@ gem 'activerecord-session_store'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'devise'
 gem 'jquery-rails'
-gem 'rubocop', '~> 0.52.1', require: false
+gem 'rubocop', '~> 0.63.1', require: false
 gem 'twitter'
 gem 'csv'
 gem 'growlyflash'

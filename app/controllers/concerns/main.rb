@@ -1,48 +1,48 @@
 module Main
-	extend ActiveSupport::Concern
-
-	def index
-		@tweets = current_user.tweet
-		tweet = @tweets.detect {
-			|t| params[:select] == t.name
-		}
-
-		config = {
-			consumer_key: tweet&.key,
-			consumer_secret: tweet&.secret,
-			access_token: tweet&.token,
-			access_token_secret: tweet&.token_secret
-		}
+    extend ActiveSupport::Concern
+    
+    def index
+        @tweets = current_user.tweet
+        tweet = @tweets.detect {
+            |t| params[:select] == t.name
+        }
+        
+        config = {
+            consumer_key: tweet&.key,
+            consumer_secret: tweet&.secret,
+            access_token: tweet&.token,
+            access_token_secret: tweet&.token_secret
+        }
         client = Twitter::REST::Client.new config
         
-		if params[:select_action] == 'follow' || params[:select_action] == 'unfollow' || params[:select_action] == 'follow-hands'
-			followers = Twi.get_followers(client, config)
+        if params[:select_action] == 'follow' || params[:select_action] == 'unfollow' || params[:select_action] == 'follow-hands'
+            followers = Twi.get_followers(client, config)
             followers_total = Twi.get_followers_total(followers)
-			friends_total = Twi.get_friends(client, config)
+            friends_total = Twi.get_friends(client, config)
         elsif
             params[:select_action] == 'acc-parsering'
             user_id = params['tag']
-			followers = Twi.get_followers(client, user_id)
+            followers = Twi.get_followers(client, user_id)
         elsif params[:select_action] == 'retweeting'
             sclient = Twitter::Streaming::Client.new(config)
         end
-
-		case
-		when params[:select_action] == 'follow'
-			follow = followers_total - friends_total
-			Twi.follow(client, follow)
+        
+        case
+        when params[:select_action] == 'follow'
+            follow = followers_total - friends_total
+            Twi.follow(client, follow)
             flash[:notice] = 'Success'
-		when params[:select_action] == 'unfollow'
-			unfollow = friends_total - followers_total
-			Twi.unfollow(client, unfollow)
+        when params[:select_action] == 'unfollow'
+            unfollow = friends_total - followers_total
+            Twi.unfollow(client, unfollow)
             flash[:notice] = 'Success'
-		when params[:select_action] == 'retweeting'
-			topics = params['tag'].split(/,/)
-			Twi.retweet(client, sclient, topics)
+        when params[:select_action] == 'retweeting'
+            topics = params['tag'].split(/,/)
+            Twi.retweet(client, sclient, topics)
             flash[:notice] = 'Success'
-		when params[:select_action] == 'posting'
-			array_posts = params[:tag1].split(/[\r\n]+/)
-			Twi.post(client, array_posts)
+        when params[:select_action] == 'posting'
+            array_posts = params[:tag1].split(/[\r\n]+/)
+            Twi.post(client, array_posts)
             flash[:notice] = 'Success'
         when params[:select_action] == 'parsering'
             twi_acc = params['tag']
@@ -58,11 +58,11 @@ module Main
                 array << '<a href = https://twitter.com/' + user.screen_name + ' target="_blank">' + user.screen_name + '</a>'
             end
             unless array.empty?
-			flash[:notice] = array.join('<br>')
+                flash[:notice] = array.join('<br>')
             else
-            flash[:notice] = 'Nothing to do'
+                flash[:notice] = 'Nothing to do'
             end
         end
-
-	end
+        
+    end
 end
