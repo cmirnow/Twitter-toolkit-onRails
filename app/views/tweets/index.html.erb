@@ -17,7 +17,7 @@
                </tr>
             </thead>
             <tbody>
-               <% @tweets.each do |tweet| %>
+               <% current_user.tweet.each do |tweet| %>
                <tr>
                   <td><%= tweet.name %></td>
                   <td><%= link_to 'Show', tweet %></td>
@@ -34,7 +34,7 @@
          <form method="get" id="twitsform" action="javascript:void(null);" onsubmit="call()">
             <label for="Twitter account">Twitter account</label>
             <select class="form-control" id="select" name="select">
-               <% @tweets.each do |tweets| %>
+               <% current_user.tweet.each do |tweets| %>
                <option value="<%= tweets.name %>"><%= tweets.name %></option>
                <% end %>
             </select>

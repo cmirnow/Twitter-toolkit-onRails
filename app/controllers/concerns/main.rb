@@ -2,8 +2,7 @@ module Main
     extend ActiveSupport::Concern
     
     def index
-        @tweets = current_user.tweet
-        tweet = @tweets.detect {
+        tweet = current_user.tweet.detect {
             |t| params[:select] == t.name
         }
         
