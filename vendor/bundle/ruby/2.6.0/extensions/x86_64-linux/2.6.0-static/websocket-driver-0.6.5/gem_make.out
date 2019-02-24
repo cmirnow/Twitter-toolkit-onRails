@@ -1,0 +1,15 @@
+current directory: /mnt/a/Rails/GitHub/test2/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+/home/alex/.rbenv/versions/2.6.1/bin/ruby -I /home/alex/.rbenv/versions/2.6.1/lib64/ruby/2.6.0 -r ./siteconf20190224-17613-j2452d.rb extconf.rb
+creating Makefile
+
+current directory: /mnt/a/Rails/GitHub/test2/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /mnt/a/Rails/GitHub/test2/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /mnt/a/Rails/GitHub/test2/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20190224-17613-9ake06

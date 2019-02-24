@@ -1,0 +1,15 @@
+current directory: /mnt/a/Rails/GitHub/test2/vendor/bundle/ruby/2.6.0/gems/bindex-0.5.0/ext/bindex
+/home/alex/.rbenv/versions/2.6.1/bin/ruby -I /home/alex/.rbenv/versions/2.6.1/lib64/ruby/2.6.0 -r ./siteconf20190224-17613-1r860td.rb extconf.rb
+creating Makefile
+
+current directory: /mnt/a/Rails/GitHub/test2/vendor/bundle/ruby/2.6.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: /mnt/a/Rails/GitHub/test2/vendor/bundle/ruby/2.6.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+compiling cruby.c
+linking shared-object bindex/cruby.so
+
+current directory: /mnt/a/Rails/GitHub/test2/vendor/bundle/ruby/2.6.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20190224-17613-166k0v5/bindex
