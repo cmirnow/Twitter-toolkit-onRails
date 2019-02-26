@@ -26,31 +26,31 @@ module Main
             sclient = Twitter::Streaming::Client.new(config)
         end
         
-        case
-        when params[:select_action] == 'follow'
+        case params[:select_action]
+        when 'follow'
             follow = followers_total - friends_total
             Twi.follow(client, follow)
             flash[:notice] = 'Success'
-        when params[:select_action] == 'unfollow'
+        when 'unfollow'
             unfollow = friends_total - followers_total
             Twi.unfollow(client, unfollow)
             flash[:notice] = 'Success'
-        when params[:select_action] == 'retweeting'
+        when 'retweeting'
             topics = params['tag'].split(/,/)
             Twi.retweet(client, sclient, topics)
             flash[:notice] = 'Success'
-        when params[:select_action] == 'posting'
+        when 'posting'
             array_posts = params[:tag1].split(/[\r\n]+/)
             Twi.post(client, array_posts)
             flash[:notice] = 'Success'
-        when params[:select_action] == 'parsering'
+        when 'parsering'
             twi_acc = params['tag']
             twits_array = Twi.parser(client, twi_acc).join('<br>')
             flash[:notice] = twits_array
-        when params[:select_action] == 'acc-parsering'
+        when 'acc-parsering'
             twi_array = Twi.print_followers(followers).join(' ')
             flash[:notice] = twi_array
-        when params[:select_action] == 'follow-hands'
+        when 'follow-hands'
             array = []
             follow = followers_total - friends_total
             follow.take(20).each do |user|
