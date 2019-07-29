@@ -1,0 +1,16 @@
+current directory: /home/alex/.diskA/Rails/GitHub/test2/vendor/bundle/ruby/2.5.0/gems/unf_ext-0.0.7.6/ext/unf_ext
+/usr/bin/ruby.ruby2.5 -r ./siteconf20190729-6386-1yavrk6.rb extconf.rb
+checking for -lstdc++... yes
+creating Makefile
+
+current directory: /home/alex/.diskA/Rails/GitHub/test2/vendor/bundle/ruby/2.5.0/gems/unf_ext-0.0.7.6/ext/unf_ext
+make "DESTDIR=" clean
+
+current directory: /home/alex/.diskA/Rails/GitHub/test2/vendor/bundle/ruby/2.5.0/gems/unf_ext-0.0.7.6/ext/unf_ext
+make "DESTDIR="
+compiling unf.cc
+linking shared-object unf_ext.so
+
+current directory: /home/alex/.diskA/Rails/GitHub/test2/vendor/bundle/ruby/2.5.0/gems/unf_ext-0.0.7.6/ext/unf_ext
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 unf_ext.so ./.gem.20190729-6386-1750xei
