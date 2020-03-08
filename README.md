@@ -16,7 +16,13 @@ Guys, don't forget please. This is a concept only. I am working on improving and
 
 ## Running Locally
 * Make sure you have Ruby and Postgresql installed.
-* You need to edit .env.
+* Create .env file on the root of the project:
+
+```bash
+export GMAIL_USER_NAME = '***************'
+export GMAIL_PASSWORD = '***************' 
+```
+
 ```bash
 sudo service postgresql start
 sudo -u postgres psql
