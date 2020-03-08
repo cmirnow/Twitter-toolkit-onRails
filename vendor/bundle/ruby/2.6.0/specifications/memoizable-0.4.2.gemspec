@@ -15,10 +15,10 @@ Gem::Specification.new do |s|
   s.files = ["CONTRIBUTING.md".freeze, "LICENSE.md".freeze, "README.md".freeze]
   s.homepage = "https://github.com/dkubb/memoizable".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "3.0.1".freeze
+  s.rubygems_version = "3.0.3".freeze
   s.summary = "Memoize method return values".freeze
 
-  s.installed_by_version = "3.0.1" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.0.3" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

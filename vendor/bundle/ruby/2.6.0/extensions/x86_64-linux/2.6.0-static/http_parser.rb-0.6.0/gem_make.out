@@ -1,11 +1,11 @@
-current directory: /mnt/a/Rails/GitHub/test2/vendor/bundle/ruby/2.6.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
-/home/alex/.rbenv/versions/2.6.1/bin/ruby -I /home/alex/.rbenv/versions/2.6.1/lib64/ruby/2.6.0 -r ./siteconf20190224-17613-1ti4z8.rb extconf.rb
+current directory: /home/alex/.disk_a/Rails/test2/vendor/bundle/ruby/2.6.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+/home/alex/.rbenv/versions/2.6.4/bin/ruby -I /home/alex/.rbenv/versions/2.6.4/lib64/ruby/2.6.0 -r ./siteconf20190921-7897-fdtnns.rb extconf.rb
 creating Makefile
 
-current directory: /mnt/a/Rails/GitHub/test2/vendor/bundle/ruby/2.6.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+current directory: /home/alex/.disk_a/Rails/test2/vendor/bundle/ruby/2.6.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
 make "DESTDIR=" clean
 
-current directory: /mnt/a/Rails/GitHub/test2/vendor/bundle/ruby/2.6.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+current directory: /home/alex/.disk_a/Rails/test2/vendor/bundle/ruby/2.6.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
 make "DESTDIR="
 compiling ruby_http_parser.c
 ruby_http_parser.c: In function ‘on_message_begin’:
@@ -43,9 +43,10 @@ ruby_http_parser.c: At top level:
 cc1: warning: unrecognized command line option ‘-Wno-self-assign’
 cc1: warning: unrecognized command line option ‘-Wno-parentheses-equality’
 cc1: warning: unrecognized command line option ‘-Wno-constant-logical-operand’
+cc1: warning: unrecognized command line option ‘-Wno-cast-function-type’
 compiling ryah_http_parser.c
 linking shared-object ruby_http_parser.so
 
-current directory: /mnt/a/Rails/GitHub/test2/vendor/bundle/ruby/2.6.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+current directory: /home/alex/.disk_a/Rails/test2/vendor/bundle/ruby/2.6.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 ruby_http_parser.so ./.gem.20190224-17613-1x40bek
+/usr/bin/install -c -m 0755 ruby_http_parser.so ./.gem.20190921-7897-1jl39v0

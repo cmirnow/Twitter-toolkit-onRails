@@ -12,12 +12,12 @@ NULLCMD = :
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /home/alex/.rbenv/versions/2.6.1/include/ruby-2.6.0
+topdir = /home/alex/.rbenv/versions/2.6.4/include/ruby-2.6.0
 hdrdir = $(topdir)
-arch_hdrdir = /home/alex/.rbenv/versions/2.6.1/include/ruby-2.6.0/x86_64-linux
+arch_hdrdir = /home/alex/.rbenv/versions/2.6.4/include/ruby-2.6.0/x86_64-linux
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/home/alex/.rbenv/versions/2.6.1
+prefix = $(DESTDIR)/home/alex/.rbenv/versions/2.6.4
 rubysitearchprefix = $(rubylibprefix)/$(sitearch)
 rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
@@ -31,8 +31,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20190224-17613-9ake06
-sitelibdir = $(DESTDIR)./.gem.20190224-17613-9ake06
+sitearchdir = $(DESTDIR)./.gem.20190921-7897-1kw8egb
+sitelibdir = $(DESTDIR)./.gem.20190921-7897-1kw8egb
 sitedir = $(rubylibprefix)/site_ruby
 rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
@@ -86,10 +86,10 @@ CCDLFLAGS = -fPIC
 CFLAGS   = $(CCDLFLAGS) $(cflags) $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS =  -I/home/alex/.rbenv/versions/2.6.1/include  $(DEFS) $(cppflags)
+CPPFLAGS =  -I/home/alex/.rbenv/versions/2.6.4/include  $(DEFS) $(cppflags)
 CXXFLAGS = $(CCDLFLAGS) $(cxxflags) $(ARCH_FLAG)
-ldflags  = -L. -L/home/alex/.rbenv/versions/2.6.1/lib  -fstack-protector-strong -rdynamic -Wl,-export-dynamic
-dldflags = -L/home/alex/.rbenv/versions/2.6.1/lib  -Wl,--compress-debug-sections=zlib 
+ldflags  = -L. -L/home/alex/.rbenv/versions/2.6.4/lib  -fstack-protector-strong -rdynamic -Wl,-export-dynamic
+dldflags = -L/home/alex/.rbenv/versions/2.6.4/lib  -Wl,--compress-debug-sections=zlib 
 ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
 LDSHARED = $(CC) -shared

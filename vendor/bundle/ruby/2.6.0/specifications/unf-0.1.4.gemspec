@@ -15,10 +15,10 @@ Gem::Specification.new do |s|
   s.files = ["LICENSE".freeze, "README.md".freeze]
   s.homepage = "https://github.com/knu/ruby-unf".freeze
   s.licenses = ["2-clause BSDL".freeze]
-  s.rubygems_version = "3.0.1".freeze
+  s.rubygems_version = "3.0.3".freeze
   s.summary = "A wrapper library to bring Unicode Normalization Form support to Ruby/JRuby".freeze
 
-  s.installed_by_version = "3.0.1" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.0.3" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

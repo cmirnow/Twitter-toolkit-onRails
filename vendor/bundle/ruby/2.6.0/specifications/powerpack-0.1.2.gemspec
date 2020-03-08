@@ -13,10 +13,10 @@ Gem::Specification.new do |s|
   s.email = ["bozhidar@batsov.com".freeze]
   s.homepage = "https://github.com/bbatsov/powerpack".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "3.0.1".freeze
+  s.rubygems_version = "3.0.3".freeze
   s.summary = "A few useful extensions to core Ruby classes.".freeze
 
-  s.installed_by_version = "3.0.1" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.0.3" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

@@ -16,19 +16,21 @@ Guys, don't forget please. This is a concept only. I am working on improving and
 
 ## Running Locally
 * Make sure you have Ruby and Postgresql installed.
+* You need to edit .env.
 ```bash
 sudo service postgresql start
 sudo -u postgres psql
-postgres=# CREATE DATABASE development_test2;
+postgres=# CREATE DATABASE development_twi_toolkit;
 git clone https://github.com/cmirnow/Twitter-toolkit-onRails.git
 cd Twitter-toolkit-onRails
 bundle install
 bin/rails db:migrate RAILS_ENV=development
 rails s
 ```
-* Go to http://localhost:3000
-* Sign up
-* Sign in
+* Go to http://localhost:3000.
+* Sign up.
+* Confirm your email.
+* Sign in.
 * Create New Tweet now. Attention, you need to get four keys of Twitter API: Consumer Key, Consumer Secret, Access Token and Access Token Secret.
 * Select one of four actions (follow, unfollow, retweet, post).
 * Go ahead. :)

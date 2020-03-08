@@ -7,7 +7,7 @@
          <% else %>
          <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
          <% end %>
-         <%= image_tag("/logo.png") %>
+         <%= image_tag current_user.gravatar_url, :class => "gravatar" %>
          <h3>Twitter Toolkit onRails</h3>
          <table>
             <thead>

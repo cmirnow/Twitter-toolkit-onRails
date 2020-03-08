@@ -13,7 +13,6 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require growlyflash
-//= require jquery_ujs
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
