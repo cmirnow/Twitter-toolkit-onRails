@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'activerecord-session_store'
-gem 'bootstrap-sass', '~> 3.3.7'
+gem 'bootstrap-sass'
 gem 'devise'
 gem 'jquery-rails'
 gem 'rubocop', '~> 0.63.1', require: false
