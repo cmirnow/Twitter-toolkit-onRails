@@ -16,6 +16,7 @@ Guys, don't forget please. This is a concept only. I am working on improving and
 
 ## Running Locally
 * Make sure you have Ruby and Postgresql installed.
+* git clone https://github.com/cmirnow/Twitter-toolkit-onRails.git
 * Create .env file on the root of the project:
 
 ```bash
@@ -27,7 +28,6 @@ export GMAIL_PASSWORD = '***************'
 sudo service postgresql start
 sudo -u postgres psql
 postgres=# CREATE DATABASE development_twi_toolkit;
-git clone https://github.com/cmirnow/Twitter-toolkit-onRails.git
 cd Twitter-toolkit-onRails
 bundle install
 bin/rails db:migrate RAILS_ENV=development
