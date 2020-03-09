@@ -6,8 +6,6 @@
 
 # Ignore bundler config.
 /.bundle
-## Environment normalization:
-/vendor/bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -26,5 +24,4 @@
 
 .directory
 twitts.csv
-followers.csv
 .env

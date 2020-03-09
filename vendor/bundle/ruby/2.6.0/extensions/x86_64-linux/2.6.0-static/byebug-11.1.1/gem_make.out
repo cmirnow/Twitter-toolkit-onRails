@@ -1,0 +1,19 @@
+current directory: /home/alex/.disk_a/Rails/GitLab/test2/vendor/bundle/ruby/2.6.0/gems/byebug-11.1.1/ext/byebug
+/home/alex/.rbenv/versions/2.6.4/bin/ruby -I /home/alex/.rbenv/versions/2.6.4/lib64/ruby/2.6.0 -r ./siteconf20200225-18468-1qqrhdf.rb extconf.rb
+creating Makefile
+
+current directory: /home/alex/.disk_a/Rails/GitLab/test2/vendor/bundle/ruby/2.6.0/gems/byebug-11.1.1/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /home/alex/.disk_a/Rails/GitLab/test2/vendor/bundle/ruby/2.6.0/gems/byebug-11.1.1/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.so
+
+current directory: /home/alex/.disk_a/Rails/GitLab/test2/vendor/bundle/ruby/2.6.0/gems/byebug-11.1.1/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20200225-18468-xwxxqz/byebug
