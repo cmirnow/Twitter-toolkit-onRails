@@ -1,0 +1,15 @@
+current directory: /home/alex/.disk_a/Rails/GitHub/Twitter-toolkit-onRails/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.7.3/ext/websocket-driver
+/home/alex/.rbenv/versions/2.6.4/bin/ruby -I /home/alex/.rbenv/versions/2.6.4/lib64/ruby/2.6.0 -r ./siteconf20200903-10500-1173rtd.rb extconf.rb
+creating Makefile
+
+current directory: /home/alex/.disk_a/Rails/GitHub/Twitter-toolkit-onRails/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.7.3/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /home/alex/.disk_a/Rails/GitHub/Twitter-toolkit-onRails/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.7.3/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /home/alex/.disk_a/Rails/GitHub/Twitter-toolkit-onRails/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.7.3/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20200903-10500-wocgkx

@@ -1,0 +1,19 @@
+current directory: /home/alex/.disk_a/Rails/GitHub/Twitter-toolkit-onRails/vendor/bundle/ruby/2.6.0/gems/bcrypt-3.1.15/ext/mri
+/home/alex/.rbenv/versions/2.6.4/bin/ruby -I /home/alex/.rbenv/versions/2.6.4/lib64/ruby/2.6.0 -r ./siteconf20200903-10500-1lzwsd.rb extconf.rb
+creating Makefile
+
+current directory: /home/alex/.disk_a/Rails/GitHub/Twitter-toolkit-onRails/vendor/bundle/ruby/2.6.0/gems/bcrypt-3.1.15/ext/mri
+make "DESTDIR=" clean
+
+current directory: /home/alex/.disk_a/Rails/GitHub/Twitter-toolkit-onRails/vendor/bundle/ruby/2.6.0/gems/bcrypt-3.1.15/ext/mri
+make "DESTDIR="
+compiling bcrypt_ext.c
+compiling crypt_blowfish.c
+gcc  -D__SKIP_GNU -I/home/alex/.rbenv/versions/2.6.4/include     -c -o x86.o x86.S
+compiling crypt_gensalt.c
+compiling wrapper.c
+linking shared-object bcrypt_ext.so
+
+current directory: /home/alex/.disk_a/Rails/GitHub/Twitter-toolkit-onRails/vendor/bundle/ruby/2.6.0/gems/bcrypt-3.1.15/ext/mri
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bcrypt_ext.so ./.gem.20200903-10500-1l7b692
