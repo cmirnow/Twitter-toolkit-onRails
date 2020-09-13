@@ -1,0 +1,48 @@
+current directory: /home/alex/.disk_a/Rails/GitHub/Twitter-toolkit-onRails/vendor/bundle/ruby/2.7.0/gems/jaro_winkler-1.5.4/ext/jaro_winkler
+/usr/bin/ruby -I /usr/share/rubygems -r ./siteconf20200907-4890-1v0hglx.rb extconf.rb
+creating Makefile
+
+current directory: /home/alex/.disk_a/Rails/GitHub/Twitter-toolkit-onRails/vendor/bundle/ruby/2.7.0/gems/jaro_winkler-1.5.4/ext/jaro_winkler
+make "DESTDIR=" clean
+rm -f 
+rm -f jaro_winkler_ext.so  *.o  *.bak mkmf.log .*.time
+
+current directory: /home/alex/.disk_a/Rails/GitHub/Twitter-toolkit-onRails/vendor/bundle/ruby/2.7.0/gems/jaro_winkler-1.5.4/ext/jaro_winkler
+make "DESTDIR="
+gcc -I. -I/usr/include -I/usr/include/ruby/backward -I/usr/include -I.   -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC -std=c99  -m64 -o adj_matrix.o -c adj_matrix.c
+gcc -I. -I/usr/include -I/usr/include/ruby/backward -I/usr/include -I.   -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC -std=c99  -m64 -o codepoints.o -c codepoints.c
+gcc -I. -I/usr/include -I/usr/include/ruby/backward -I/usr/include -I.   -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC -std=c99  -m64 -o jaro.o -c jaro.c
+gcc -I. -I/usr/include -I/usr/include/ruby/backward -I/usr/include -I.   -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC -std=c99  -m64 -o jaro_winkler.o -c jaro_winkler.c
+jaro_winkler.c: В функции «Init_jaro_winkler_ext»:
+jaro_winkler.c:19:3: предупреждение: в передаче аргумента 3 «rb_define_singleton_methodm1»: несовместимый тип указателя [-Wincompatible-pointer-types]
+   19 |   rb_define_singleton_method(rb_mJaroWinkler, "distance",
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+      |   |
+      |   VALUE (*)(size_t,  VALUE *, VALUE) {aka long unsigned int (*)(long unsigned int,  long unsigned int *, long unsigned int)}
+In file included from /usr/include/ruby/ruby.h:2148,
+                 from /usr/include/ruby.h:33,
+                 from codepoints.h:2,
+                 from jaro_winkler.c:1:
+/usr/include/ruby/intern.h:1195:1: замечание: ожидался тип «VALUE (*)(int,  union <anonymous>,  VALUE)» {aka «long unsigned int (*)(int,  union <anonymous>,  long unsigned int)»}, но аргумент имеет тип «VALUE (*)(size_t,  VALUE *, VALUE)» {aka «long unsigned int (*)(long unsigned int,  long unsigned int *, long unsigned int)»}
+ 1195 | RB_METHOD_DEFINITION_DECL(rb_define_singleton_method, (2,3), (VALUE klass, const char *name), (klass, name))
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~
+jaro_winkler.c:21:3: предупреждение: в передаче аргумента 3 «rb_define_singleton_methodm1»: несовместимый тип указателя [-Wincompatible-pointer-types]
+   21 |   rb_define_singleton_method(rb_mJaroWinkler, "jaro_distance", rb_jaro_distance,
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+      |   |
+      |   VALUE (*)(size_t,  VALUE *, VALUE) {aka long unsigned int (*)(long unsigned int,  long unsigned int *, long unsigned int)}
+In file included from /usr/include/ruby/ruby.h:2148,
+                 from /usr/include/ruby.h:33,
+                 from codepoints.h:2,
+                 from jaro_winkler.c:1:
+/usr/include/ruby/intern.h:1195:1: замечание: ожидался тип «VALUE (*)(int,  union <anonymous>,  VALUE)» {aka «long unsigned int (*)(int,  union <anonymous>,  long unsigned int)»}, но аргумент имеет тип «VALUE (*)(size_t,  VALUE *, VALUE)» {aka «long unsigned int (*)(long unsigned int,  long unsigned int *, long unsigned int)»}
+ 1195 | RB_METHOD_DEFINITION_DECL(rb_define_singleton_method, (2,3), (VALUE klass, const char *name), (klass, name))
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~
+rm -f jaro_winkler_ext.so
+gcc -shared -o jaro_winkler_ext.so adj_matrix.o codepoints.o jaro.o jaro_winkler.o -L. -L/usr/lib64 -L. -Wl,-z,relro -Wl,--as-needed  -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,-z,relro -Wl,--as-needed  -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld  -m64  -lruby  -lm   -lc
+
+current directory: /home/alex/.disk_a/Rails/GitHub/Twitter-toolkit-onRails/vendor/bundle/ruby/2.7.0/gems/jaro_winkler-1.5.4/ext/jaro_winkler
+make "DESTDIR=" install
+/usr/bin/mkdir -p . ./.gem.20200907-4890-15yvjqb/jaro_winkler
+exit > .sitearchdir.-.jaro_winkler.time
+/usr/bin/install -c -m 0755 jaro_winkler_ext.so ./.gem.20200907-4890-15yvjqb/jaro_winkler
