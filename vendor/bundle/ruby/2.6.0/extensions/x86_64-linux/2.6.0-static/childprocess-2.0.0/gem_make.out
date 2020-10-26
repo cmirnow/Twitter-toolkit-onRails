@@ -1,5 +1,0 @@
-current directory: /home/alex/.disk_a/Rails/test2/vendor/bundle/ruby/2.6.0/gems/childprocess-2.0.0/ext
-/home/alex/.rbenv/versions/2.6.4/bin/ruby mkrf_conf.rb
-
-current directory: /home/alex/.disk_a/Rails/test2/vendor/bundle/ruby/2.6.0/gems/childprocess-2.0.0/ext
-/home/alex/.rbenv/versions/2.6.4/bin/ruby -rrubygems /home/alex/.disk_a/Rails/test2/vendor/bundle/ruby/2.6.0/gems/rake-12.3.3/exe/rake RUBYARCHDIR\=/home/alex/.disk_a/Rails/test2/vendor/bundle/ruby/2.6.0/extensions/x86_64-linux/2.6.0-static/childprocess-2.0.0 RUBYLIBDIR\=/home/alex/.disk_a/Rails/test2/vendor/bundle/ruby/2.6.0/extensions/x86_64-linux/2.6.0-static/childprocess-2.0.0
