@@ -24,5 +24,6 @@
 
 .directory
 twitts.csv
+followers.csv
 .env
 /vendor/bundle
