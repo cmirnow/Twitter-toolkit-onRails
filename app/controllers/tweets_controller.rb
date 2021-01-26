@@ -78,8 +78,6 @@ class TweetsController < ApplicationController
     @tweet = current_user.tweet.build
   end
 
-  def edit; end
-
   def create
     @tweet = current_user.tweet.build(tweet_params)
 
