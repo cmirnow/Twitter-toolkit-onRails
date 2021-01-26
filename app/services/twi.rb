@@ -102,7 +102,8 @@ end
 
   def self.post(client, array_posts)
     array_posts.each do |i|
-      puts client.update(i)
+      client.update(i)
+      puts 'Posted: ' + i
       sleep rand(10..45)
     end
 end
