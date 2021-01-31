@@ -12,7 +12,7 @@ class Twi
       followers.concat client.users(ids)
     end
     followers
-end
+  end
 
   def self.get_followers_total(followers)
     followers_total = []
@@ -20,7 +20,7 @@ end
       followers_total << user.id
       puts "adding follower to an array: #{user.screen_name}"
     end
-end
+  end
 
   def self.get_friends(client, user_id)
     friend_ids = []
@@ -43,62 +43,7 @@ end
       friends_total << user.id
       puts "adding friend to an array: #{user.screen_name}"
     end
-end
-
-  def self.follow(client, follow)
-    counter = 0
-    begin
-      follow.take(100).reverse_each do |user|
-        client.follow(user)
-        follow.delete(user)
-        counter += 1
-        puts "follow: #{user.screen_name} #{Time.now}"
-        sleep rand(30..60)
-      end
-    end
-  rescue Twitter::Error::TooManyRequests, Twitter::Error::Forbidden, OpenSSL::SSL::SSLError, Twitter::Error::ServiceUnavailable, HTTP::ConnectionError
-    []
-    puts "rescue Twitter::Error #{Time.now}"
-    if counter > 0 # ending a long task if Twitter API doesn't allow work
-      sleep 905
-      counter = 0
-      retry
-    end
-end
-
-  def self.unfollow(client, unfollow)
-    unfollow.take(1000).reverse_each do |user|
-      client.unfollow(user)
-      unfollow.delete(user)
-      puts "unfollow: #{user.screen_name} #{Time.now}"
-      sleep rand(1..5)
-    end
-  rescue Twitter::Error::TooManyRequests, Twitter::Error::Forbidden, OpenSSL::SSL::SSLError, Twitter::Error::ServiceUnavailable, HTTP::ConnectionError
-    []
-    puts "rescue Twitter::Error #{Time.now}"
-    sleep 905
-    retry
-end
-
-  def self.retweet(client, sclient, topics)
-    counter = 0
-    while counter <= 30
-      begin
-        sclient.filter(track: topics.join(',')) do |tweet|
-          if tweet.is_a?(Twitter::Tweet)
-            puts tweet.text
-            client.retweet tweet
-            counter += 1
-            sleep rand(10..45)
-          end
-        end
-      rescue StandardError
-        puts 'error occurred, waiting for 5 seconds'
-        counter += 1
-        sleep 15
-      end
-    end
-end
+  end
 
   def self.post(client, array_posts)
     array_posts.each do |i|
@@ -106,7 +51,7 @@ end
       puts 'Posted: ' + i
       sleep rand(10..45)
     end
-end
+  end
 
   def self.parser(client, twi_acc)
     array = Set.new
@@ -126,7 +71,7 @@ end
       end
     end
     array1
-end
+  end
 
   def self.print_followers(followers)
     array = []
@@ -139,5 +84,5 @@ end
       end
     end
     array
-end
+  end
 end

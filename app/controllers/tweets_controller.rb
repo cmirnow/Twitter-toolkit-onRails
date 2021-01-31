@@ -15,8 +15,7 @@ class TweetsController < ApplicationController
     }
     client = Twitter::REST::Client.new config
 
-    if params[:select_action] == 'follow' ||
-       params[:select_action] == 'unfollow' ||
+    if params[:select_action] == 'unfollow' ||
        params[:select_action] == 'follow-hands'
       followers = Twi.get_followers(client, config)
       followers_total = Twi.get_followers_total(followers)
@@ -30,20 +29,20 @@ class TweetsController < ApplicationController
 
     case params[:select_action]
     when 'follow'
-      follow = followers_total - friends_total
-      Twi.follow(client, follow)
-      flash[:notice] = 'Success'
+      #follow = (followers_total - friends_total).as_json(only: [:id, :screen_name])
+      FollowJob.perform_later(tweet)
+      flash[:notice] = 'Success ' + Time.now.to_s
     when 'unfollow'
-      unfollow = friends_total - followers_total
-      Twi.unfollow(client, unfollow)
+      unfollow = (friends_total - followers_total).as_json(only: [:id, :screen_name])
+      UnfollowJob.perform_later(unfollow, tweet)
       flash[:notice] = 'Success'
     when 'retweeting'
       topics = params['tag'].split(/,/)
-      Twi.retweet(client, sclient, topics)
+      RetweetsJob.perform_later(topics, tweet)
       flash[:notice] = 'Success'
     when 'posting'
       array_posts = params[:tag1].split(/[\r\n]+/)
-      Twi.post(client, array_posts)
+      Twi.post(client, array_posts, tweet)
       flash[:notice] = 'Success'
     when 'parsering'
       twi_acc = params['tag']
