@@ -4,7 +4,7 @@ class FollowJob < ApplicationJob
   retry_on TwitterFuck, wait: 3.minutes, attempts: 5
   queue_as :default
 
-  def perform(tweet)
+  def perform(tweet, follow)
     config = {
       consumer_key: tweet&.key,
       consumer_secret: tweet&.secret,
@@ -13,15 +13,10 @@ class FollowJob < ApplicationJob
     }
     client = Twitter::REST::Client.new config
 
-    followers = Twi.get_followers(client, config)
-    followers_total = Twi.get_followers_total(followers)
-    friends_total = Twi.get_friends(client, config)
-    follow = followers_total - friends_total
-
     follow.take(100).reverse_each do |user|
-      (client.follow(user)
-       follow.delete(user)
-       puts "follow: #{user.screen_name} #{Time.now}") ||
+      (client.follow(user["id"])
+       follow.delete(user["id"])
+       puts "follow: #{user["screen_name"]} #{Time.now}") ||
         raise(TwitterFuck)
     end
   end

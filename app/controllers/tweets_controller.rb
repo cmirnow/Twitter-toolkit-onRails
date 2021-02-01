@@ -16,6 +16,7 @@ class TweetsController < ApplicationController
     client = Twitter::REST::Client.new config
 
     if params[:select_action] == 'unfollow' ||
+    	params[:select_action] == 'follow' ||
        params[:select_action] == 'follow-hands'
       followers = Twi.get_followers(client, config)
       followers_total = Twi.get_followers_total(followers)
@@ -29,8 +30,8 @@ class TweetsController < ApplicationController
 
     case params[:select_action]
     when 'follow'
-      #follow = (followers_total - friends_total).as_json(only: [:id, :screen_name])
-      FollowJob.perform_later(tweet)
+      follow = (followers_total - friends_total).as_json(only: [:id, :screen_name])
+      FollowJob.perform_later(tweet, follow)
       flash[:notice] = 'Success ' + Time.now.to_s
     when 'unfollow'
       unfollow = (friends_total - followers_total).as_json(only: [:id, :screen_name])
