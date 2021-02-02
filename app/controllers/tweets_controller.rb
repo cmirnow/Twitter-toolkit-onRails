@@ -43,7 +43,7 @@ class TweetsController < ApplicationController
       flash[:notice] = 'Success'
     when 'posting'
       array_posts = params[:tag1].split(/[\r\n]+/)
-      Twi.post(client, array_posts, tweet)
+      PostingJob.perform_later(array_posts, tweet)
       flash[:notice] = 'Success'
     when 'parsering'
       twi_acc = params['tag']

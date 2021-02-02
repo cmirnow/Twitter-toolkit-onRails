@@ -1,18 +1,12 @@
 class FollowJob < ApplicationJob
   queue_as :default
 
-  def perform(tweet, follow)
-    config = {
-      consumer_key: tweet&.key,
-      consumer_secret: tweet&.secret,
-      access_token: tweet&.token,
-      access_token_secret: tweet&.token_secret
-    }
-    client = Twitter::REST::Client.new config
+  def perform(*args)
+    client = twi_client(args[0])
     begin
-      follow.take(100).reverse_each do |user|
+      args[1].take(100).reverse_each do |user|
         client.follow(user['id'])
-        follow.delete(user)
+        args[1].delete(user)
         puts "follow: #{user['screen_name']} #{Time.now}"
         sleep rand(30..60)
       end

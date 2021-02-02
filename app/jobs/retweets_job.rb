@@ -1,20 +1,14 @@
 class RetweetsJob < ApplicationJob
   queue_as :default
 
-  def perform(topics, tweet)
-    config = {
-      consumer_key: tweet&.key,
-      consumer_secret: tweet&.secret,
-      access_token: tweet&.token,
-      access_token_secret: tweet&.token_secret
-    }
-    client = Twitter::REST::Client.new config
-    sclient = Twitter::Streaming::Client.new config
+  def perform(*args)
+    client = twi_client(args[1])
+    sclient = twi_sclient(args[1])
 
     counter = 0
     while counter <= 30
       begin
-        sclient.filter(track: topics.join(',')) do |tweet|
+        sclient.filter(track: args[0].join(',')) do |tweet|
           if tweet.is_a?(Twitter::Tweet)
             puts tweet.text
             client.retweet tweet
