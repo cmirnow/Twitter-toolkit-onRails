@@ -46,31 +46,27 @@ class Twi
   end
 
   def self.parser(client, twi_acc)
-    array = Set.new
-    array1 = []
+    array = []
     CSV.open('twitts.csv', 'w') do |csv|
       client.search(twi_acc, result_type: 'recent', tweet_mode: 'extended').take(30).collect do |tweet|
         array << tweet
                  .attrs[:full_text]
                  .gsub(twi_acc, '')
+                 .gsub('@:', '')
+                 .gsub('@', '')
                  .gsub('RT :', '')
                  .gsub('RT', '')
       end
-      array.each do |item|
-        csv << [item]
-        array1 << item
-        puts item
-      end
+      array.map { |n| csv << [n] }
     end
-    array1
+    array
   end
 
   def self.print_followers(followers)
     array = []
     CSV.open('followers.csv', 'w') do |csv|
-      total = followers.count
       followers.each_with_index do |user, index|
-        print "\r#{index}/#{total} complete"
+        print "\r#{index}/#{followers.count} complete"
         csv << [user.screen_name]
         array << user.screen_name
       end
