@@ -1,15 +1,15 @@
 class Twi
-  def self.get_followers(client, user_id)
+  def self.get_followers(*args)
     follower_ids = []
     next_cursor = -1
     while next_cursor != 0
-      cursor = client.follower_ids(user_id, cursor: next_cursor)
+      cursor = args[0].follower_ids(args[1], cursor: next_cursor)
       follower_ids.concat cursor.attrs[:ids]
       next_cursor = cursor.send(:next_cursor)
     end
     followers = []
     follower_ids.each_slice(100) do |ids|
-      followers.concat client.users(ids)
+      followers.concat args[0].users(ids)
     end
     followers
   end
@@ -22,12 +22,12 @@ class Twi
     end
   end
 
-  def self.get_friends(client, user_id)
+  def self.get_friends(*args)
     friend_ids = []
     next_cursor = -1
     begin
       while next_cursor != 0
-        cursor = client.friend_ids(user_id, cursor: next_cursor)
+        cursor = args[0].friend_ids(args[1], cursor: next_cursor)
         friend_ids.concat cursor.attrs[:ids]
         next_cursor = cursor.send(:next_cursor)
       end
@@ -36,7 +36,7 @@ class Twi
     end
     friends = []
     friend_ids.each_slice(100) do |ids|
-      friends.concat client.users(ids)
+      friends.concat args[0].users(ids)
     end
     friends_total = []
     friends.each_with_index do |user, _index|
@@ -45,13 +45,13 @@ class Twi
     end
   end
 
-  def self.parser(client, twi_acc)
+  def self.parser(*args)
     array = []
     CSV.open('twitts.csv', 'w') do |csv|
-      client.search(twi_acc, result_type: 'recent', tweet_mode: 'extended').take(30).collect do |tweet|
+      args[0].search(args[1], result_type: 'recent', tweet_mode: 'extended').take(30).collect do |tweet|
         array << tweet
                  .attrs[:full_text]
-                 .gsub(twi_acc, '')
+                 .gsub(args[1], '')
                  .gsub('@:', '')
                  .gsub('@', '')
                  .gsub('RT :', '')
