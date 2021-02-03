@@ -16,35 +16,32 @@ class TweetsController < ApplicationController
     client = Twitter::REST::Client.new config
 
     if params[:select_action] == 'unfollow' ||
-    	params[:select_action] == 'follow' ||
+       params[:select_action] == 'follow' ||
        params[:select_action] == 'follow-hands'
-      followers = Twi.get_followers(client, config)
-      followers_total = Twi.get_followers_total(followers)
-      friends_total = Twi.get_friends(client, config)
+      followers = GetFollowersJob.perform_now(tweet)
+      friends = GetFriendsJob.perform_now(tweet)
     elsif params[:select_action] == 'acc-parsering'
       user_id = params['tag']
       followers = Twi.get_followers(client, user_id)
-    elsif params[:select_action] == 'retweeting'
-      sclient = Twitter::Streaming::Client.new(config)
     end
 
     case params[:select_action]
     when 'follow'
-      follow = (followers_total - friends_total).as_json(only: [:id, :screen_name])
+      follow = (followers - friends).as_json(only: %i[id screen_name])
       FollowJob.perform_later(tweet, follow)
-      flash[:notice] = 'Success ' + Time.now.to_s
+      notice
     when 'unfollow'
-      unfollow = (friends_total - followers_total).as_json(only: [:id, :screen_name])
+      unfollow = (friends - followers).as_json(only: %i[id screen_name])
       UnfollowJob.perform_later(unfollow, tweet)
-      flash[:notice] = 'Success'
+      notice
     when 'retweeting'
       topics = params['tag'].split(/,/)
       RetweetsJob.perform_later(topics, tweet)
-      flash[:notice] = 'Success'
+      notice
     when 'posting'
       array_posts = params[:tag1].split(/[\r\n]+/)
       PostingJob.perform_later(array_posts, tweet)
-      flash[:notice] = 'Success'
+      notice
     when 'parsering'
       twi_acc = params['tag']
       twits_array = Twi.parser(client, twi_acc).join('<br>')
@@ -54,7 +51,7 @@ class TweetsController < ApplicationController
       flash[:notice] = twi_array
     when 'follow-hands'
       array = []
-      follow = followers_total - friends_total
+      follow = followers - friends
       follow.take(20).each do |user|
         array << '<a href = https://twitter.com/' +
                  user.screen_name +
@@ -68,6 +65,10 @@ class TweetsController < ApplicationController
                          array.join('<br>')
                        end
     end
+  end
+
+  def notice
+    flash[:notice] = 'The task is queued ' + Time.now.to_s
   end
 
   def show

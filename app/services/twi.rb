@@ -14,37 +14,6 @@ class Twi
     followers
   end
 
-  def self.get_followers_total(followers)
-    followers_total = []
-    followers.each_with_index do |user, _index|
-      followers_total << user.id
-      puts "adding follower to an array: #{user.screen_name}"
-    end
-  end
-
-  def self.get_friends(*args)
-    friend_ids = []
-    next_cursor = -1
-    begin
-      while next_cursor != 0
-        cursor = args[0].friend_ids(args[1], cursor: next_cursor)
-        friend_ids.concat cursor.attrs[:ids]
-        next_cursor = cursor.send(:next_cursor)
-      end
-    rescue Twitter::Error::Unauthorized
-      []
-    end
-    friends = []
-    friend_ids.each_slice(100) do |ids|
-      friends.concat args[0].users(ids)
-    end
-    friends_total = []
-    friends.each_with_index do |user, _index|
-      friends_total << user.id
-      puts "adding friend to an array: #{user.screen_name}"
-    end
-  end
-
   def self.parser(*args)
     array = []
     CSV.open('twitts.csv', 'w') do |csv|
