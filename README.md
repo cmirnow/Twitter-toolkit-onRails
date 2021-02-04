@@ -9,10 +9,14 @@ But!
 
 Guys, don't forget please. This is a concept only. I am working on improving and refactoring this rails-app.
 
-[Description](https://masterpro.ws/ruby-on-rails-twitter-tools) (in Russian).
+[Description](https://masterpro.ws/serializing-twitter-user-object-for-activejob) (in Russian).
 
 
-[![Twitter toolkit onRails](https://img.youtube.com/vi/9pWFf7fc1DE/0.jpg)](https://www.youtube.com/watch?v=9pWFf7fc1DE "Twitter toolkit onRails")
+[![Twitter Toolkit on Rails](https://github.com/cmirnow/Twitter-toolkit-onRails/blob/master/images/twitter-toolkit-on-rails-1.jpg)](https://masterpro.ws/serializing-twitter-user-object-for-activejob)
+
+
+[![Twitter Toolkit on Rails](https://github.com/cmirnow/Twitter-toolkit-onRails/blob/master/images/twitter-toolkit-on-rails.jpg)](https://masterpro.ws/serializing-twitter-user-object-for-activejob)
+
 
 ## Running Locally
 * Make sure you have Ruby and Postgresql installed.
