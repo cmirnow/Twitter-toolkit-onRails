@@ -12,10 +12,10 @@ Guys, don't forget please. This is a concept only. I am working on improving and
 [Description](https://masterpro.ws/serializing-twitter-user-object-for-activejob) (in Russian).
 
 
-[![Twitter Toolkit on Rails](https://github.com/cmirnow/Twitter-toolkit-onRails/blob/master/images/twitter-toolkit-on-rails-1.jpg)](https://masterpro.ws/serializing-twitter-user-object-for-activejob)
+[![Twitter Toolkit on Rails](https://github.com/cmirnow/Twitter-toolkit-onRails/blob/master/public/images/twitter-toolkit-on-rails-1.jpg)](https://masterpro.ws/serializing-twitter-user-object-for-activejob)
 
 
-[![Twitter Toolkit on Rails](https://github.com/cmirnow/Twitter-toolkit-onRails/blob/master/images/twitter-toolkit-on-rails.jpg)](https://masterpro.ws/serializing-twitter-user-object-for-activejob)
+[![Twitter Toolkit on Rails](https://github.com/cmirnow/Twitter-toolkit-onRails/blob/master/public/images/twitter-toolkit-on-rails.jpg)](https://masterpro.ws/serializing-twitter-user-object-for-activejob)
 
 
 ## Running Locally
