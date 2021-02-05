@@ -9,12 +9,11 @@ class TweetsController < ApplicationController
   end
 
   def index
-    if params[:select_action] == 'unfollow' ||
-       params[:select_action] == 'follow' ||
-       params[:select_action] == 'follow-hands'
+    case params[:select_action]
+    when 'follow', 'unfollow', 'follow-hands'
       followers = GetFollowersJob.perform_now(tweet)
       friends = GetFriendsJob.perform_now(tweet)
-    elsif params[:select_action] == 'acc-parsering'
+    when 'acc-parsering'
       followers = GetFollowersJob.perform_now(tweet, params['tag'])
     end
 
