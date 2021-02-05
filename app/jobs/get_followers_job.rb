@@ -3,7 +3,7 @@ class GetFollowersJob < ApplicationJob
 
   def perform(*args)
     client = twi_client(args[0])
-    config = config(args[0])
+    config = args[1] || config(args[0])
     follower_ids = []
     next_cursor = -1
     while next_cursor != 0

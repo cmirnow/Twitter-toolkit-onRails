@@ -2,53 +2,50 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_tweet, only: %i[show edit update destroy]
 
-  def index
-    tweet = current_user.tweet.detect do |t|
+  def tweet
+    current_user.tweet.detect do |t|
       params[:select] == t.name
     end
+  end
 
-    config = {
-      consumer_key: tweet&.key,
-      consumer_secret: tweet&.secret,
-      access_token: tweet&.token,
-      access_token_secret: tweet&.token_secret
-    }
-    client = Twitter::REST::Client.new config
-
+  def index
     if params[:select_action] == 'unfollow' ||
        params[:select_action] == 'follow' ||
        params[:select_action] == 'follow-hands'
       followers = GetFollowersJob.perform_now(tweet)
       friends = GetFriendsJob.perform_now(tweet)
     elsif params[:select_action] == 'acc-parsering'
-      user_id = params['tag']
-      followers = Twi.get_followers(client, user_id)
+      followers = GetFollowersJob.perform_now(tweet, params['tag'])
     end
 
     case params[:select_action]
     when 'follow'
       follow = (followers - friends).as_json(only: %i[id screen_name])
       FollowJob.perform_later(tweet, follow)
-      notice
+      message
     when 'unfollow'
       unfollow = (friends - followers).as_json(only: %i[id screen_name])
       UnfollowJob.perform_later(unfollow, tweet)
-      notice
+      message
     when 'retweeting'
       topics = params['tag'].split(/,/)
       RetweetsJob.perform_later(topics, tweet)
-      notice
+      message
     when 'posting'
       array_posts = params[:tag1].split(/[\r\n]+/)
       PostingJob.perform_later(array_posts, tweet)
-      notice
+      message
     when 'parsering'
-      twi_acc = params['tag']
-      twits_array = Twi.parser(client, twi_acc).join('<br>')
-      flash[:notice] = twits_array
+      flash[:notice] = GetTweetsJob.perform_now(tweet, params['tag']).map { |n| n + '<br/>' }
+                                   .to_s
+                                   .gsub('", "', '')
+                                   .gsub('\"', '')
+                                   .gsub('\n', '')
+                                   .tr('[""]', '')
     when 'acc-parsering'
-      twi_array = Twi.print_followers(followers).join(' ')
-      flash[:notice] = twi_array
+      flash[:notice] = GetAccountsJob.perform_now(followers.as_json(only: [:screen_name]))
+                                     .to_s.gsub('"', '')
+                                     .tr('[]', '')
     when 'follow-hands'
       array = []
       follow = followers - friends
@@ -67,8 +64,8 @@ class TweetsController < ApplicationController
     end
   end
 
-  def notice
-    flash[:notice] = 'The task is queued ' + Time.now.to_s
+  def message
+    flash[:success] = 'The task is queued ' + Time.now.to_s
   end
 
   def show
