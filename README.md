@@ -1,13 +1,9 @@
-## Short description
+## Twitter Toolkit on Rails
 Twitter Toolkit onRails can Follow, Unfollow, Retweet, Posts and Tweet Parser.
-
-Would you like to take a look at the video?
 
 Thank you, thank you very much. I already hear your admiring exclamations.
 
-But!
-
-Guys, don't forget please. This is a concept only. I am working on improving and refactoring this rails-app.
+But! Guys, don't forget please. This is a concept only. I am working on improving and refactoring this rails-app.
 
 [Description](https://masterpro.ws/serializing-twitter-user-object-for-activejob) (in Russian).
 
