@@ -15,6 +15,8 @@ class GetFriendsJob < ApplicationJob
       end
     rescue Twitter::Error::Unauthorized, HTTP::ConnectionError
       []
+      puts "rescue Twitter::Error #{Time.now}"
+      retry
     end
     friends = []
     friend_ids.each_slice(100) do |ids|

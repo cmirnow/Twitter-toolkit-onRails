@@ -15,6 +15,8 @@ class GetFollowersJob < ApplicationJob
       end
     rescue Twitter::Error::Unauthorized, HTTP::ConnectionError
       []
+      puts "rescue Twitter::Error #{Time.now}"
+      retry
     end
     followers = []
     follower_ids.each_slice(100) do |ids|
