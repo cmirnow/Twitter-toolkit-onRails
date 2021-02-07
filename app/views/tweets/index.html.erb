@@ -3,7 +3,7 @@
       <% if user_signed_in? %>
       <div class="form-group">
          <div class="alert alert-light" role="alert">
-         <span>Hi, <%= current_user.email %></span>
+         Hi, <%= current_user.email %>
          <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
          <% end %>
       </div>
