@@ -2,11 +2,11 @@
    <div id="sidebar-wrapper">
       <% if user_signed_in? %>
       <div class="form-group">
-         <span>Здравствуйте, <%= current_user.email %></span>
+         <div class="alert alert-light" role="alert">
+         <span>Hi, <%= current_user.email %></span>
          <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-         <% else %>
-         <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
          <% end %>
+      </div>
          <%= image_tag current_user.gravatar_url, :class => "gravatar" %>
          <h3>Twitter Toolkit onRails</h3>
          <table>
@@ -29,7 +29,7 @@
          </table>
          <br>
          <div class="new_tweet">
-            <%= link_to 'New Access Tokens Block', new_tweet_path %>
+            <a href="<%= new_tweet_path %>" class="btn btn-success" role="button">New Access Tokens Block</a>
          </div>
          <form method="get" id="twitsform" action="javascript:void(null);" onsubmit="call()">
             <label for="Twitter account">Twitter account</label>

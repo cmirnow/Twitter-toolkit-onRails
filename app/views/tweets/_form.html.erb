@@ -11,31 +11,26 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label 'Username' %>
     <%= form.text_field :name, id: :tweet_name %>
   </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :key %>
     <%= form.text_field :key, id: :tweet_key %>
   </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :secret %>
     <%= form.text_field :secret, id: :tweet_secret %>
   </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :token %>
     <%= form.text_field :token, id: :tweet_token %>
   </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :token_secret %>
     <%= form.text_field :token_secret, id: :tweet_token_secret %>
   </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
