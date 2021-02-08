@@ -4,7 +4,7 @@
       <div class="form-group">
          <div class="alert alert-light" role="alert">
          Hi, <%= current_user.email %>
-         <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+         <%= link_to 'Log Off', destroy_user_session_path, :method => :delete %>
          <% end %>
       </div>
          <%= image_tag current_user.gravatar_url, :class => "gravatar" %>
@@ -20,16 +20,16 @@
                <% current_user.tweet.each do |tweet| %>
                <tr>
                   <td><%= tweet.name %></td>
-                  <td><%= link_to 'Show', tweet %></td>
-                  <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-                  <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <td><%= link_to 'Show', tweet, class: "btn btn-light" %></td>
+                  <td><%= link_to 'Edit', edit_tweet_path(tweet), class: "btn btn-light" %></td>
+                  <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light" %></td>
                </tr>
                <% end %>
             </tbody>
          </table>
          <br>
          <div class="new_tweet">
-            <a href="<%= new_tweet_path %>" class="btn btn-success" role="button">New Access Tokens Block</a>
+            <a href="<%= new_tweet_path %>" class="btn btn-primary" role="button">New Access Tokens Block</a>
          </div>
          <form method="get" id="twitsform" action="javascript:void(null);" onsubmit="call()">
             <label for="Twitter account">Twitter account</label>

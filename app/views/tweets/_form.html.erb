@@ -2,7 +2,6 @@
   <% if tweet.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
-
       <ul>
       <% tweet.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -13,27 +12,25 @@
 
   <div class="form-group">
     <%= form.label 'Username' %>
-    <%= form.text_field :name, id: :tweet_name %>
+    <%= form.text_field :name, id: :tweet_name, required: true %>
   </div>
   <div class="form-group">
     <%= form.label :key %>
-    <%= form.text_field :key, id: :tweet_key %>
+    <%= form.text_field :key, id: :tweet_key, required: true %>
   </div>
   <div class="form-group">
     <%= form.label :secret %>
-    <%= form.text_field :secret, id: :tweet_secret %>
+    <%= form.text_field :secret, id: :tweet_secret, required: true %>
   </div>
   <div class="form-group">
     <%= form.label :token %>
-    <%= form.text_field :token, id: :tweet_token %>
+    <%= form.text_field :token, id: :tweet_token, required: true %>
   </div>
   <div class="form-group">
     <%= form.label :token_secret %>
-    <%= form.text_field :token_secret, id: :tweet_token_secret %>
+    <%= form.text_field :token_secret, id: :tweet_token_secret, required: true %>
   </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :Submit, class: 'btn btn-light' %>
   </div>
 <% end %>
-
-
