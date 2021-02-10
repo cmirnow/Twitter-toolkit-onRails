@@ -10,7 +10,11 @@ class UnfollowJob < ApplicationJob
       puts "unfollow: #{user['screen_name']} #{Time.now}"
       sleep rand(1..5)
     end
-  rescue Twitter::Error::TooManyRequests, Twitter::Error::Forbidden, OpenSSL::SSL::SSLError, Twitter::Error::ServiceUnavailable, HTTP::ConnectionError
+  rescue Twitter::Error::TooManyRequests,
+         Twitter::Error::Forbidden,
+         OpenSSL::SSL::SSLError,
+         Twitter::Error::ServiceUnavailable,
+         HTTP::Error
     []
     puts "rescue Twitter::Error #{Time.now}"
     sleep 905

@@ -13,7 +13,7 @@ class GetFriendsJob < ApplicationJob
         friend_ids.concat cursor.attrs[:ids]
         next_cursor = cursor.send(:next_cursor)
       end
-    rescue Twitter::Error::Unauthorized, HTTP::ConnectionError
+    rescue Twitter::Error::Unauthorized, HTTP::Error
       []
       puts "rescue Twitter::Error #{Time.now}"
       retry

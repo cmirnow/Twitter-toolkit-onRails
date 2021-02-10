@@ -11,7 +11,11 @@ class FollowJob < ApplicationJob
         sleep rand(30..60)
       end
     end
-  rescue Twitter::Error::TooManyRequests, Twitter::Error::Forbidden, OpenSSL::SSL::SSLError, Twitter::Error::ServiceUnavailable, HTTP::ConnectionError
+  rescue Twitter::Error::TooManyRequests,
+         Twitter::Error::Forbidden,
+         OpenSSL::SSL::SSLError,
+         Twitter::Error::ServiceUnavailable,
+         HTTP::Error
     []
     puts "rescue Twitter::Error #{Time.now}"
     sleep 905
