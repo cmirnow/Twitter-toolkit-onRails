@@ -13,7 +13,9 @@ class GetFollowersJob < ApplicationJob
         follower_ids.concat cursor.attrs[:ids]
         next_cursor = cursor.send(:next_cursor)
       end
-    rescue Twitter::Error::Unauthorized, HTTP::Error
+    rescue Twitter::Error::Unauthorized,
+           Twitter::Error::ServiceUnavailable,
+           HTTP::Error
       []
       puts "rescue Twitter::Error #{Time.now}"
       retry
