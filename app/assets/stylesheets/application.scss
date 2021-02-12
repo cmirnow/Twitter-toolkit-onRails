@@ -13,17 +13,8 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";
-@import "bootstrap";
+@import "bootstrap/scss/bootstrap";
 
-$growlyflash-top:     6em !default;
-$growlyflash-side:    20px !default;
-$growlyflash-width:   65% !default;
-$growlyflash-zindex:  9999 !default;
-@import "growlyflash";
-
-body {
-    margin: 40px;
+#flash-message {
+	padding-top: 1em;
 }
-
-

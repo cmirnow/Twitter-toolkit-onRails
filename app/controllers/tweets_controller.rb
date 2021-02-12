@@ -35,16 +35,16 @@ class TweetsController < ApplicationController
       PostingJob.perform_later(array_posts, tweet)
       message
     when 'parsering'
-      flash[:notice] = GetTweetsJob.perform_now(tweet, params['tag']).map { |n| n + '<br/>' }
-                                   .to_s
-                                   .gsub('", "', '')
-                                   .gsub('\"', '')
-                                   .gsub('\n', '')
-                                   .tr('[""]', '')
+      message GetTweetsJob.perform_now(tweet, params['tag']).map { |n| n + '<br/>' }
+                          .to_s
+                          .gsub('", "', '')
+                          .gsub('\"', '')
+                          .gsub('\n', '')
+                          .tr('[""]', '')
     when 'acc-parsering'
-      flash[:notice] = GetAccountsJob.perform_now(followers.as_json(only: [:screen_name]))
-                                     .to_s.gsub('"', '')
-                                     .tr('[]', '')
+      message GetAccountsJob.perform_now(followers.as_json(only: [:screen_name]))
+                            .to_s.gsub('"', '')
+                            .tr('[]', '')
     when 'follow-hands'
       array = []
       follow = followers - friends
@@ -55,16 +55,18 @@ class TweetsController < ApplicationController
                  user.screen_name +
                  '</a>'
       end
-      flash[:notice] = if array.empty?
-                         'Nothing to do'
-                       else
-                         array.join('<br>')
-                       end
+      message x = if array.empty?
+                    'Nothing to do'
+                  else
+                    array.join('<br>')
+                  end
     end
   end
 
-  def message
-    flash[:success] = 'The task is queued ' + Time.now.to_s
+  def message x = ('The task is queued ' + Time.now.to_s)
+    respond_to do |format|
+      format.json { render json: x }
+    end
   end
 
   def show

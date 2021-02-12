@@ -1,4 +1,4 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   name: MyString
@@ -6,7 +6,6 @@ one:
   secret: MyString
   token: MyString
   token_secret: MyString
-  user: one
 
 two:
   name: MyString
@@ -14,4 +13,3 @@ two:
   secret: MyString
   token: MyString
   token_secret: MyString
-  user: two
