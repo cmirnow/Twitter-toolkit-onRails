@@ -6,21 +6,14 @@ class RetweetsJob < ApplicationJob
     sclient = twi_sclient(args[1])
 
     counter = 0
-    while counter <= 30
-      begin
-        sclient.filter(track: args[0].join(',')) do |tweet|
-          if tweet.is_a?(Twitter::Tweet)
-            puts tweet.text
-            client.retweet tweet
-            counter += 1
-            sleep rand(10..45)
-          end
-        end
-      rescue StandardError
-        puts 'error occurred, waiting for 5 seconds'
-        counter += 1
-        sleep 15
-      end
+    sclient.filter(track: args[0].join(',')) do |tweet|
+      puts tweet.text
+      puts client.retweet tweet
+      counter += 1
+      # You can determine the number of retweets here:
+      break if counter == 10
+
+      sleep rand(10..25)
     end
   end
 end
