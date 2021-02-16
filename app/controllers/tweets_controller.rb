@@ -47,7 +47,8 @@ class TweetsController < ApplicationController
                             .tr('[]', '')
     when 'follow-hands'
       follow = followers - friends
-      result = follow.map do |user|
+      # Select the number of accounts to follow manually:
+      result = follow.first(20).map do |user|
         '<a href = https://twitter.com/' +
           user.screen_name +
           ' target="_blank">' +
