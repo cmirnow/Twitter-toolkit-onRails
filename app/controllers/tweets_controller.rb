@@ -46,24 +46,24 @@ class TweetsController < ApplicationController
                             .to_s.gsub('"', '')
                             .tr('[]', '')
     when 'follow-hands'
-      array = []
       follow = followers - friends
-      follow.take(20).each do |user|
-        array << '<a href = https://twitter.com/' +
-                 user.screen_name +
-                 ' target="_blank">' +
-                 user.screen_name +
-                 '</a>'
+      result = follow.map do |user|
+        '<a href = https://twitter.com/' +
+          user.screen_name +
+          ' target="_blank">' +
+          user.screen_name +
+          '</a>'
       end
-      message x = if array.empty?
+
+      message x = if result.empty?
                     'Nothing to do'
                   else
-                    array.join('<br>')
+                    result.join('<br>')
                   end
     end
   end
 
-  def message x = ('The task is queued ' + Time.now.to_s)
+  def message(x = ('The task is queued ' + Time.now.to_s))
     respond_to do |format|
       format.json { render json: x }
     end
