@@ -1,6 +1,7 @@
 <div class="container">
   <% flash.each do |type, msg| %>
     <div class="alert alert-success alert-dismissable fade show">
+    	<button type="button" class="close" data-dismiss="alert">&times;</button>
       <%= msg %>
     </div>
   <% end %> 
