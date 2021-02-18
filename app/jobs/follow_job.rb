@@ -3,11 +3,12 @@ class FollowJob < ApplicationJob
 
   def perform(*args)
     client = twi_client(args[0])
+    list = follow(args[0])
     begin
-      args[1].take(100).reverse_each do |user|
-        client.follow(user['id'])
-        args[1].delete(user)
-        puts "follow: #{user['screen_name']} #{Time.now}"
+      list.take(100).reverse_each do |user|
+        client.follow(user.id)
+        list.delete(user)
+        puts "follow: #{user.screen_name} #{Time.now}"
         sleep rand(30..60)
       end
     end

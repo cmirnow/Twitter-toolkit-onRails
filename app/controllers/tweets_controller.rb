@@ -10,21 +10,11 @@ class TweetsController < ApplicationController
 
   def index
     case params[:select_action]
-    when 'follow', 'unfollow', 'follow-hands'
-      followers = GetFollowersJob.perform_now(tweet)
-      friends = GetFriendsJob.perform_now(tweet)
-    when 'acc-parsering'
-      followers = GetFollowersJob.perform_now(tweet, params['tag'])
-    end
-
-    case params[:select_action]
     when 'follow'
-      follow = (followers - friends).as_json(only: %i[id screen_name])
-      FollowJob.perform_later(tweet, follow)
+      FollowJob.perform_later(tweet)
       message
     when 'unfollow'
-      unfollow = (friends - followers).as_json(only: %i[id screen_name])
-      UnfollowJob.perform_later(unfollow, tweet)
+      UnfollowJob.perform_later(tweet)
       message
     when 'retweeting'
       topics = params['tag'].split(/,/)
@@ -42,7 +32,7 @@ class TweetsController < ApplicationController
                           .gsub('\n', '')
                           .tr('[""]', '')
     when 'acc-parsering'
-      message GetAccountsJob.perform_now(followers.as_json(only: [:screen_name]))
+      message GetAccountsJob.perform_now(tweet, params['tag'])
                             .to_s.gsub('"', '')
                             .tr('[]', '')
     when 'follow-hands'
