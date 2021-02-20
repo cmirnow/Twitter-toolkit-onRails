@@ -36,16 +36,13 @@ class TweetsController < ApplicationController
                             .to_s.gsub('"', '')
                             .tr('[]', '')
     when 'follow-hands'
-      follow = followers - friends
+      follow = FollowHandsJob.perform_now(tweet)
       # Select the number of accounts to follow manually:
       result = follow.first(20).map do |user|
-        '<a href = https://twitter.com/' +
-          user.screen_name +
-          ' target="_blank">' +
-          user.screen_name +
-          '</a>'
+        helpers.link_to user.screen_name,
+                        "https://twitter.com/#{user.screen_name}",
+                        target: '_blank'
       end
-
       message x = if result.empty?
                     'Nothing to do'
                   else
