@@ -8,18 +8,7 @@
                      <% end %>
             </div>
             <%= image_tag current_user.gravatar_url, :class => "gravatar" %>
-               <div class="my-3 ml-3">
-                  <h4>Twitter Toolkit onRails</h4>
-               </div>
-               <table>
-                  <thead>
-                     <tr>
-                        <th>
-                           <%= label_tag 'Username', nil, class: 'small' %>
-                        </th>
-                        <th colspan="3"></th>
-                     </tr>
-                  </thead>
+               <table class="nicknames my-3">
                   <tbody>
                      <% current_user.tweet.each do |tweet| %>
                         <tr>
