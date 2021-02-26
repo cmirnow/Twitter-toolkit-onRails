@@ -8,8 +8,15 @@ function call() {
         complete: function(data) {
             $('#btnSubmit').prop('disabled', false);
             var div = document.createElement('div');
+
+            if (data.responseText.includes('The task is queued')) {
+                var alert_style = '<div class="alert alert-info alert-dismissible fade show" role="alert">';
+            } else {
+                var alert_style = '<div class="alert alert-warning alert-dismissible fade show" role="alert">';
+            }
+
             div.innerHTML =
-                '<div class="alert alert-info alert-dismissible fade show" role="alert">' +
+                alert_style +
                 '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
                 data.responseText +
                 '</div>';
