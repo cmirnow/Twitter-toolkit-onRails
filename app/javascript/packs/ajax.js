@@ -1,4 +1,4 @@
-function call() {
+window.call = function () {
     $('#btnSubmit').prop('disabled', true);
     var msg = $('#twitsform').serialize();
     $.ajax({
