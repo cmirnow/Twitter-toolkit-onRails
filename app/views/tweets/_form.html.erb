@@ -30,6 +30,23 @@
     <%= form.label :token_secret %>
     <%= form.text_field :token_secret, id: :tweet_token_secret, required: true %>
   </div>
+  <hr align="left" width=30% />
+  <div class="form-group">
+    <%= form.label 'Proxy' %>
+    <%= form.text_field :host, id: :tweet_host, required: false %>
+  </div>
+  <div class="form-group">
+    <%= form.label :port %>
+    <%= form.text_field :port, id: :tweet_port, required: false %>
+  </div>
+  <div class="form-group">
+    <%= form.label :username %>
+    <%= form.text_field :username, id: :tweet_username, required: false %>
+  </div>
+  <div class="form-group">
+    <%= form.label :password %>
+    <%= form.text_field :password, id: :tweet_password, required: false %>
+  </div>
   <div class="actions">
     <%= form.submit :Submit, class: 'btn btn-outline-primary my-3 ml-3' %>
   </div>

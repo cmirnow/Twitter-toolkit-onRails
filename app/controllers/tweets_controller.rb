@@ -101,6 +101,6 @@ class TweetsController < ApplicationController
   end
 
   def tweet_params
-    params.require(:tweet).permit(:name, :key, :secret, :token, :token_secret, :user_id)
+    params.require(:tweet).permit(:name, :key, :secret, :token, :token_secret, :host, :port, :username, :password, :user_id)
   end
 end

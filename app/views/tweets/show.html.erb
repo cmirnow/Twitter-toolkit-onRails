@@ -26,6 +26,28 @@
   <strong>Token secret:</strong>
   <%= @tweet.token_secret %>
 </p>
+
+<hr align="left" width=50% />
+
+<p>
+  <strong>Proxy:</strong>
+  <%= @tweet.host %>
+</p>
+
+<p>
+  <strong>Port:</strong>
+  <%= @tweet.port %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @tweet.username %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @tweet.password %>
+</p>
 </div>
 
 <%= link_to 'Edit', edit_tweet_path(@tweet) %> |

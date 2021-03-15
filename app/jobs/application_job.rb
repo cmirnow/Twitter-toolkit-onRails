@@ -9,11 +9,23 @@ class ApplicationJob < ActiveJob::Base
 
   def config(tweet)
     {
-      consumer_key: tweet&.key,
-      consumer_secret: tweet&.secret,
-      access_token: tweet&.token,
-      access_token_secret: tweet&.token_secret
+      consumer_key: tweet.key,
+      consumer_secret: tweet.secret,
+      access_token: tweet.token,
+      access_token_secret: tweet.token_secret,
+      proxy: proxy(tweet)
     }
+  end
+
+  def proxy(tweet)
+    unless tweet.host.nil?
+      {
+        host: tweet.host,
+        port: tweet.port,
+        username: tweet.username,
+        password: tweet.password
+      }
+    end
   end
 
   def follow(tweet)
