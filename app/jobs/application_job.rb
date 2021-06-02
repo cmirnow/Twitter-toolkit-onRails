@@ -18,7 +18,7 @@ class ApplicationJob < ActiveJob::Base
   end
 
   def proxy(tweet)
-    unless tweet.host.nil?
+    unless tweet.host.empty?
       {
         host: tweet.host,
         port: tweet.port,
