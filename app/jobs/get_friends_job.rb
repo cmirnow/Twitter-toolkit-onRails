@@ -24,10 +24,7 @@ class GetFriendsJob < ApplicationJob
     friend_ids.each_slice(100) do |ids|
       friends.concat client.users(ids)
     end
-    friends_total = []
-    friends.each do |user|
-      friends_total << user.id
-      puts "adding friend to an array: #{user.screen_name}"
-    end
+    friends.map { |user| puts "adding friend to an array: #{user.screen_name}" }
+    friends
   end
 end

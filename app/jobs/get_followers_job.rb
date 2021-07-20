@@ -24,10 +24,7 @@ class GetFollowersJob < ApplicationJob
     follower_ids.each_slice(100) do |ids|
       followers.concat client.users(ids)
     end
-    followers_total = []
-    followers.each do |user|
-      followers_total << user.id
-      puts "adding follower to an array: #{user.screen_name}"
-    end
+    followers.map { |user| puts "adding follower to an array: #{user.screen_name}" }
+    followers
   end
 end
