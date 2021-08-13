@@ -48,6 +48,10 @@ class TweetsController < ApplicationController
                   else
                     result.join('<br>')
                   end
+    when 'likes'
+      topics = params['tag'].split(/,/)
+      LikesJob.perform_later(topics, tweet)
+      message
     end
   end
 
