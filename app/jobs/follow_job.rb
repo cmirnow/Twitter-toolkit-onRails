@@ -3,7 +3,7 @@ class FollowJob < ApplicationJob
 
   def perform(*args)
     client = twi_client(args[0])
-    list = follow(args[0])
+    list = follow(*args)
     begin
       list.take(100).each do |user|
         client.follow(user.id)

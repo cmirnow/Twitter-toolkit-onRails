@@ -11,7 +11,7 @@ class TweetsController < ApplicationController
   def index
     case params[:select_action]
     when 'follow'
-      FollowJob.perform_later(tweet)
+      FollowJob.perform_later(tweet, params[:select])
       message
     when 'unfollow'
       UnfollowJob.perform_later(tweet)

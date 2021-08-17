@@ -28,10 +28,10 @@ class ApplicationJob < ActiveJob::Base
     end
   end
 
-  def follow(tweet)
-    array = get_user_lists(tweet)
+  def follow(*args)
+    array = get_user_lists(args[0])
     list = array[0] - array[1]
-    save_follow_list(list)
+    save_follow_list(list, args[1])
     list
   end
 
@@ -40,9 +40,9 @@ class ApplicationJob < ActiveJob::Base
     array[1] - array[0]
   end
 
-  def save_follow_list(list)
-    CSV.open("#{Rails.root}/follow_lists/list.csv", 'w') do |csv|
-      csv << list.map { |e| e.id }
+  def save_follow_list(*args)
+    CSV.open("#{Rails.root}/follow_lists/" + args[1] + ".csv", 'w') do |csv|
+      csv << args[0].map { |e| e.id }
     end
   end
 
