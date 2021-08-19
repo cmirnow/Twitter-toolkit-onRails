@@ -40,4 +40,3 @@ twitts.csv
 followers.csv
 .env
 /vendor/bundle
-/follow_lists/*
