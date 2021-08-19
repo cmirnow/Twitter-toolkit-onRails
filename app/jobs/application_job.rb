@@ -40,12 +40,6 @@ class ApplicationJob < ActiveJob::Base
     array[1] - array[0]
   end
 
-  def save_follow_list(*args)
-    CSV.open("#{Rails.root}/follow_lists/" + args[1] + ".csv", 'w') do |csv|
-      csv << args[0].map { |e| e.id }
-    end
-  end
-
   def get_user_lists(tweet)
     [GetFollowersJob.perform_now(tweet), GetFriendsJob.perform_now(tweet)]
   end
