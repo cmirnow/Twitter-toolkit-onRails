@@ -36,13 +36,14 @@
                         <%= label_tag 'Actions', nil, class: 'small mt-3' %>
                            <%= select_tag "select_action", options_for_select([
             ['Follow', 'follow'],
+            ['Use List to Follow', 'use-list-to-follow'],
+            ['Manual Following', 'follow-hands'],
             ['Unfollow', 'unfollow'],
             ['Retweet', 'retweeting'],
+            ['Likes', 'likes'],
             ['Posting', 'posting'],
             ['Tweet Parser', 'parsering'],
-            ['Account Parser', 'acc-parsering'],
-            ['Manual Following', 'follow-hands'],
-            ['Likes', 'likes']
+            ['Account Parser', 'acc-parsering']
             ]), {:class=>'form-control'} %>
                               <input type="text" class="form-control" id="Input" name="tag" style="display: none; margin-top:1em;">
                                  <%= button_tag "Go ahead", { id: "btnSubmit", class: "btn btn-outline-danger mt-4" } %>

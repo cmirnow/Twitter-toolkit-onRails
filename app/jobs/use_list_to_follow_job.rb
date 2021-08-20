@@ -1,15 +1,15 @@
-class FollowJob < ApplicationJob
+class UseListToFollowJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
     client = twi_client(args[0])
-    list = follow(*args)
+    list = follow_list(args[1])
     begin
       list.take(100).each do |user|
-        client.follow(user.id)
+        client.follow(user.to_i)
         list.delete(user)
         dynamic_follow_list(args[1])
-        puts "follow: #{user.screen_name} #{Time.now}"
+        puts "follow: #{user} #{Time.now}"
         sleep rand(30..60)
       end
     rescue Twitter::Error::TooManyRequests,
@@ -24,9 +24,7 @@ class FollowJob < ApplicationJob
     end
   end
 
-  def save_follow_list(*args)
-    CSV.open(path_to_csv_file(args[1]), 'w') do |csv|
-      csv << args[0].map { |e| e.id }
-    end
+  def follow_list(nick)
+    CSV.open(path_to_csv_file(nick)).to_a.flatten
   end
 end

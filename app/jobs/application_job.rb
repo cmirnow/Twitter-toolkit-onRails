@@ -43,4 +43,15 @@ class ApplicationJob < ActiveJob::Base
   def get_user_lists(tweet)
     [GetFollowersJob.perform_now(tweet), GetFriendsJob.perform_now(tweet)]
   end
+
+  def dynamic_follow_list(nick)
+    array_of_ids = CSV.open(path_to_csv_file(nick)).to_a.flatten.drop(1)
+    CSV.open(path_to_csv_file(nick), 'w') do |csv|
+      csv << array_of_ids
+    end
+  end
+
+  def path_to_csv_file(nick)
+    "#{Rails.root}/follow_lists/" + nick + '.csv'
+  end
 end

@@ -52,6 +52,9 @@ class TweetsController < ApplicationController
       topics = params['tag'].split(/,/)
       LikesJob.perform_later(topics, tweet)
       message
+    when 'use-list-to-follow'
+      UseListToFollowJob.perform_later(tweet, params[:select])
+      message
     end
   end
 

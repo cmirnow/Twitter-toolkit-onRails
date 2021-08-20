@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $("#select_action").change(function() {
         var value = $(this).val();
-        if (value == "follow" || value == "unfollow" || value == "follow-hands") {
+        if (value == "follow" || value == "unfollow" || value == "follow-hands" || value == "use-list-to-follow") {
             $("#Input").hide();
             $("#Textarea").hide();
         } else if (value == "posting") {
