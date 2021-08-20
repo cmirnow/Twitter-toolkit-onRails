@@ -53,14 +53,24 @@ class TweetsController < ApplicationController
       LikesJob.perform_later(topics, tweet)
       message
     when 'use-list-to-follow'
-      UseListToFollowJob.perform_later(tweet, params[:select])
-      message
+      if File.exist?("#{Rails.root}/follow_lists/" + params[:select] + '.csv')
+        UseListToFollowJob.perform_later(tweet, params[:select])
+        message
+      else
+        message1
+      end
     end
   end
 
   def message(x = ('The task is queued ' + Time.now.to_s))
     respond_to do |format|
       format.json { render json: x }
+    end
+  end
+
+  def message1
+    respond_to do |format|
+      format.json { render json: 'To use this option, you need to run FOLLOW at least once.' }
     end
   end
 
