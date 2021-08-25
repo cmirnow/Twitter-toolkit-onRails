@@ -6,7 +6,7 @@ class UseListToFollowJob < ApplicationJob
     list = follow_list(args[1])
     begin
       list.take(100).each do |user|
-        client.follow(user.to_i)
+        client.follow(user)
         list.delete(user)
         dynamic_follow_list(args[1])
         puts "follow: #{user} #{Time.now}"

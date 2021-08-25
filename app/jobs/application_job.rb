@@ -44,6 +44,12 @@ class ApplicationJob < ActiveJob::Base
     [GetFollowersJob.perform_now(tweet), GetFriendsJob.perform_now(tweet)]
   end
 
+  def save_follow_list(*args)
+    CSV.open(path_to_csv_file(args[1]), 'w') do |csv|
+      csv << args[0].map { |e| e.screen_name }
+    end
+  end
+
   def dynamic_follow_list(nick)
     array_of_ids = CSV.open(path_to_csv_file(nick)).to_a.flatten.drop(1)
     CSV.open(path_to_csv_file(nick), 'w') do |csv|

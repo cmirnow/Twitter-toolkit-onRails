@@ -23,10 +23,4 @@ class FollowJob < ApplicationJob
       retry
     end
   end
-
-  def save_follow_list(*args)
-    CSV.open(path_to_csv_file(args[1]), 'w') do |csv|
-      csv << args[0].map { |e| e.id }
-    end
-  end
 end

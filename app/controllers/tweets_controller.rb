@@ -13,6 +13,10 @@ class TweetsController < ApplicationController
     when 'follow'
       FollowJob.perform_later(tweet, params[:select])
       message
+    when 'find_accounts_to_follow'
+      topics = params['tag'].split(/,/)
+      FindAccountsToFollowJob.perform_later(topics, tweet, params[:select])
+      message
     when 'unfollow'
       UnfollowJob.perform_later(tweet)
       message
